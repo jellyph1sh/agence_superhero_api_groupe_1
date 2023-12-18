@@ -17,7 +17,8 @@ class CreateCitiesTable extends Migration
 
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->foreign('id_city')->references('hq_city')->on('groups');
+            $table->bigInteger('id_city')->unsigned(); // Assuming 'hq_city' is a bigInteger in the 'groups' table
+            $table->foreign('id_city')->references('id')->on('groups'); // Assuming 'id' is the primary key in the 'groups' table
             $table->string('city_name');
             $table->float('latitude');
             $table->float('longitude');
