@@ -25,14 +25,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, User $user)
@@ -46,5 +38,19 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+    }
+    public function login()
+    {
+        validator(request()->all(),  [
+            'email' => ['required', 'email'], 
+            'password' => ['required']
+        ])->validate();
+        $user = User::where('email', request('email'))->first();
+        if(hash::check(request('password'), $user->getAuthPassword())) {
+            return [
+                'token' => $use->createToken(time())->plainTextToken
+            ];
+
+        }
     }
 }
