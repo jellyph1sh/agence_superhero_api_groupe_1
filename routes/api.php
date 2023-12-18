@@ -17,7 +17,7 @@ use App\Http\Controllers\UsersController;
 */
 Route::apiResource("users", UsersController::class);
 Route::get("/users/{id}", [UsersController::class, 'show']);
-Route::get("/users/delet/{id}", [UsersController::class, 'destroy']);
+Route::get("/users/delete/{id}", [UsersController::class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
