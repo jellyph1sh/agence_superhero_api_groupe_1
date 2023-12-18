@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\API\UserController;
-use App\Http\Controllers\TestController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,6 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource("users", UserController::class);
-Route::apiResource("test", TestController::class);
-Route::get('/test/{id}', [TestController::class, 'show']);
-Route::get('/user/add', [UserController::class, 'store'])
+Route::get('/user/add', [UserController::class, 'store']);
