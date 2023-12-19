@@ -43,7 +43,6 @@ class UsersController extends Controller
         $newUser->profile_picture = $profile_picture;
 
 
-       // dd($newUser);
         $newUser->save();
     }
 
@@ -83,7 +82,6 @@ class UsersController extends Controller
         $userUpdate-> password = $request->input('password');
         $userUpdate-> role = $request->input('role');
         $userUpdate-> profile_picture = $request->input('profile_picture');
-         //dd($userUpdate);
         $userUpdate->save();
 
     }
