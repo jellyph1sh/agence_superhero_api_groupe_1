@@ -16,11 +16,10 @@ class CreatePowerUsersTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('power_users', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('id_user'); // Add id_user column
-            $table->foreign('id_user')->references('id_hero')->on('superheroes');
+            $table->id('id_hero');
+            $table->foreign('id_hero')->references('id_hero')->on('superheroes');
             $table->bigInteger('id_power');
-            $table->foreign('id_power')->references('ids_power')->on('powers'); // Corrected column name to id_power
+            $table->foreign('id_power')->references('id_power')->on('powers');
         });
 
         Schema::enableForeignKeyConstraints();

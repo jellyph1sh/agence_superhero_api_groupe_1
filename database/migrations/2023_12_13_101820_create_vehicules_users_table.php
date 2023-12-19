@@ -16,11 +16,10 @@ class CreateVehiculesUsersTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('vehicules_users', function (Blueprint $table) {
-            $table->id();
-            $table->bigInteger('user_id')->unsigned(); // Assuming 'id_user' is a bigInteger in the 'superheroes' table
-            $table->foreign('user_id')->references('id_user')->on('superheroes');
-            $table->bigInteger('vehicule_id')->unsigned(); // Assuming 'id_vehicule' is a bigInteger in the 'vehicules' table
-            $table->foreign('vehicule_id')->references('id_vehicule')->on('vehicules');
+            $table->id('id_hero');
+            $table->foreign('id_hero')->references('id_hero')->on('superheroes');
+            $table->bigInteger('id_vehicule');
+            $table->foreign('id_vehicule')->references('id_vehicule')->on('vehicules');
         });
 
         Schema::enableForeignKeyConstraints();
