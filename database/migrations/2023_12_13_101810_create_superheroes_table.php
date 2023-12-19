@@ -22,11 +22,11 @@ class CreateSuperheroesTable extends Migration
             $table->string('alias');
             $table->string('sex');
             $table->string('hair_color');
-            $table->string('Hero_Picture');
+            $table->string('hero_picture');
             $table->string('description');
             $table->bigInteger('sidekick');
             $table->string('wiki_url');
-            $table->bigInteger('id_group');
+            $table->bigInteger('id_group')->nullable();
             $table->foreign('id_group')->references('id_group')->on('groups');
             $table->string('origin_planet');
             $table->bigInteger('id_creator');
