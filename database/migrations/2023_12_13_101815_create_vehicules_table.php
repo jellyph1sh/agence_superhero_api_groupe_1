@@ -16,7 +16,7 @@ class CreateVehiculesTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('vehicules', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_vehicule');
             $table->string('vehicule_name');
             $table->string('vehicule_description');
         });
