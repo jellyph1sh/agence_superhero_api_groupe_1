@@ -27,7 +27,6 @@ class CitiesTableSeeder extends Seeder
         ];
         foreach ($citiesData as $key => $city) {
             DB::table('cities')->insert([
-                'id_city'     => $key,
                 'city_name'   => $city[0],
                 'latitude'    => $city[1],
                 'longitude'   => $city[2],
