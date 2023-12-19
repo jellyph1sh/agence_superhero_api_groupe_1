@@ -22,6 +22,7 @@ class CreateSuperheroesTable extends Migration
             $table->string('alias');
             $table->string('sex');
             $table->string('hair_color');
+            $table->string('Hero_Picture');
             $table->string('description');
             $table->bigInteger('sidekick');
             $table->string('wiki_url');
