@@ -18,6 +18,8 @@ use App\Http\Controllers\UsersController;
 Route::apiResource("users", UsersController::class);
 Route::get("/users/{id}", [UsersController::class, 'show']);
 Route::get("/users/delete/{id}", [UsersController::class, 'destroy']);
+Route::post("/users/add", [UsersController::class, 'store']);
+Route::put('users/update/{id}', [UsersController::class, 'update']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

@@ -13,25 +13,38 @@ class UsersController extends Controller
     public function index()
     {
         // On récupère tous les utilisateurs
-        $users = Users::all();
+        $newUsers = Users::all();
 
-        return response()->json($users);    
+        return response()->json($newUsers);    
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
-        //
+        // On récupère
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $lastname = $request->input('lastname');
+        $firstname = $request->input('firstname');
+        $alias = $request->input('alias');
+        $mail = $request->input('mail');
+        $password = $request->input('password');
+        $role = $request->input('role');
+        $profile_picture = $request->input('profile_picture');
+        $newUser = new Users;
+        $newUser->firstname = $firstname;
+        $newUser->lastname = $lastname;
+        $newUser->alias = $alias;
+        $newUser->mail = $mail;
+        $newUser->password = $password;
+        $newUser->role = $role;
+        $newUser->profile_picture = $profile_picture;
+
+
+       // dd($newUser);
+        $newUser->save();
     }
 
     /**
@@ -39,10 +52,10 @@ class UsersController extends Controller
      */
     public function show( $id)
     {
-        $user = Users::find($id);
-        if (!empty($user)) 
+        $newUser = Users::find($id);
+        if (!empty($newUser)) 
         {
-        return response()->json($user);
+        return response()->json($newUser);
         }else{
             return response()->json(["message" => " User $id not foud"], 404);
 
@@ -52,7 +65,7 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Users $users)
+    public function edit(Users $newUsers)
     {
         //
     }
@@ -60,9 +73,19 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Users $users)
+    public function update(Request $request, $id)
     {
-        //
+        $userUpdate = Users::find($id);
+        $userUpdate -> lastname = $request->input('lastname');
+        $userUpdate-> firstname = $request->input('firstname');
+        $userUpdate-> alias = $request->input('alias');
+        $userUpdate-> mail = $request->input('mail');
+        $userUpdate-> password = $request->input('password');
+        $userUpdate-> role = $request->input('role');
+        $userUpdate-> profile_picture = $request->input('profile_picture');
+         //dd($userUpdate);
+        $userUpdate->save();
+
     }
 
     /**
@@ -71,8 +94,8 @@ class UsersController extends Controller
     public function destroy($id)
     {
         if (Users::where('id', $id)->exists()){
-            $user = Users::find($id);
-            $user->delete();
+            $newUser = Users::find($id);
+            $newUser->delete();
             return response()->json([
                 "message" => "user $id deleted successfully"
             ], 202);
