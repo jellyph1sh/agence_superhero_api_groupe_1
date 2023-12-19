@@ -16,6 +16,7 @@ class CreateProtectedCitiesGroupsTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('protected_cities_groups', function (Blueprint $table) {
+            $table->id('id_protected_city_group');
             $table->bigInteger('id_group');
             $table->foreign('id_group')->references('id_group')->on('groups');
             $table->bigInteger('id_city');

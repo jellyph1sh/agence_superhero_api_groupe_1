@@ -16,6 +16,7 @@ class CreatePowerUsersTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('power_users', function (Blueprint $table) {
+            $table->id('id_power_link');
             $table->iBigInteger('id_hero');
             $table->foreign('id_hero')->references('id_hero')->on('superheroes');
             $table->bigInteger('id_power');
