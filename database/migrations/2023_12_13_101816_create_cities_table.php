@@ -16,8 +16,7 @@ class CreateCitiesTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('cities', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('id_city')->references('hq_city')->on('groups');
+            $table->id('id_city');
             $table->string('city_name');
             $table->float('latitude');
             $table->float('longitude');

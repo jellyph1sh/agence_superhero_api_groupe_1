@@ -16,8 +16,8 @@ class CreateProtectedCitiesTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('protected_cities', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('ids_protector')->references('id_hero')->on('superheroes');
+            $table->id('id_hero');
+            $table->foreign('id_hero')->references('id_hero')->on('superheroes');
             $table->bigInteger('id_city');
             $table->foreign('id_city')->references('id_city')->on('cities');
         });

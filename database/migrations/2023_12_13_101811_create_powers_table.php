@@ -16,7 +16,7 @@ class CreatePowersTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('powers', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_power');
             $table->string('power_name');
             $table->string('power_description');
         });

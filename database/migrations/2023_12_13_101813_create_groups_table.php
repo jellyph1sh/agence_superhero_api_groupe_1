@@ -16,11 +16,12 @@ class CreateGroupsTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('groups', function (Blueprint $table) {
-            $table->id();
+            $table->id('id_group');
             $table->string('group_names');
             $table->bigInteger('id_chief');
             $table->foreign('id_chief')->references('id_hero')->on('superheroes');
             $table->bigInteger('hq_city');
+            $table->foreign('hq_city')->references('id_city')->on('cities');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -16,8 +16,7 @@ class CreateSuperheroesTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('superheroes', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('id_hero')->references('sidekick')->on('superheroes');
+            $table->id('id_hero');
             $table->string('lastname');
             $table->string('firstname');
             $table->string('alias');

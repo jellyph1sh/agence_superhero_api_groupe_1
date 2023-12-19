@@ -16,8 +16,7 @@ class CreateGadgetsTable extends Migration
         Schema::disableForeignKeyConstraints();
 
         Schema::create('gadgetS', function (Blueprint $table) {
-            $table->id();
-            $table->foreign('id_gadget')->references('id_gadget')->on('gadget_users');
+            $table->id('id_gadget');
             $table->string('gadget_name');
             $table->string('gadget_description');
         });
