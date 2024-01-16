@@ -22,7 +22,7 @@ class ProtectedCitiesTableSeeder extends Seeder
         $cityIds = range(1, 5);
         for ($i = 1; $i <= $numberOfProtectedCities; $i++) {
             DB::table('protected_cities')->insert([
-                'id_protector' => $protectorIds[array_rand($protectorIds)],
+                'id_hero' => $protectorIds[array_rand($protectorIds)],
                 'id_city'      => $cityIds[array_rand($cityIds)],
             ]);
         }

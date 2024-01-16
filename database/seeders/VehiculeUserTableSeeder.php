@@ -4,7 +4,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class VehiculesUsersTableSeeder extends Seeder
+class VehiculeUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -19,8 +19,8 @@ class VehiculesUsersTableSeeder extends Seeder
         
         for ($i = 1; $i <= $numberOfVehiculesUsers; $i++) {
             DB::table('vehicules_users')->insert([
-                'user_id'      => $userIds[array_rand($userIds)],
-                'vehicule_id'  => $vehiculeIds[array_rand($vehiculeIds)],
+                'id_hero'      => $userIds[array_rand($userIds)],
+                'id_vehicule'  => $vehiculeIds[array_rand($vehiculeIds)],
             ]);
         }
     }

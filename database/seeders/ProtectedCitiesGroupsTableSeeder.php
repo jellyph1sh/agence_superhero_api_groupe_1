@@ -22,8 +22,8 @@ class ProtectedCitiesGroupsTableSeeder extends Seeder
 
         for ($i = 1; $i <= $numberOfProtectedCitiesGroups; $i++) {
             DB::table('protected_cities_groups')->insert([
-                'group_id' => $groupIds[array_rand($groupIds)],
-                'city_id'  => $cityIds[array_rand($cityIds)],
+                'id_group' => $groupIds[array_rand($groupIds)],
+                'id_city'  => $cityIds[array_rand($cityIds)],
             ]);
         }
     }

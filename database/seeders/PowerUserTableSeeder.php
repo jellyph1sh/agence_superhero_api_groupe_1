@@ -7,7 +7,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PowerUsersTableSeeder extends Seeder
+class PowerUserTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,14 +16,12 @@ class PowerUsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $numberOfPowerUsers = 10;
-        $heroIds = range(1, 10);
-        $powerIds = range(1, 5);
-
+        $numberOfPowerUsers = 9;
+        $Data = [[1, 1], [1, 2], [2, 3],[2,2], [3, 3],[3,4],[4, 4],[4,5],[5,5],[5,1]];
         for ($i = 1; $i <= $numberOfPowerUsers; $i++) {
             DB::table('power_users')->insert([
-                'id_hero'   => $heroIds[array_rand($heroIds)],
-                'id_power'  => $powerIds[array_rand($powerIds)],
+                'id_hero'   => $Data[$i][0],
+                'id_power'  => $Data[$i][1],
             ]);
         }
     }

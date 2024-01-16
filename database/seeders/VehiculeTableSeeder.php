@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class VehiculesTableSeeder extends Seeder
+class VehiculeTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

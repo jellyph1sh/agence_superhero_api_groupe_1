@@ -6,7 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class GadgetsTableSeeder extends Seeder
+class GadgetTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -30,7 +30,6 @@ class GadgetsTableSeeder extends Seeder
 
         foreach ($gadgetsData as $gadget) {
             DB::table('gadgets')->insert([
-                'id_gadget'          => rand(1, $numberOfGadgets),
                 'gadget_name'        => $gadget[0],
                 'gadget_description' => $gadget[1],
             ]);
