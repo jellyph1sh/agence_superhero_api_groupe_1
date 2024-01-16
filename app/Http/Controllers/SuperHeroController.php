@@ -98,11 +98,13 @@ class SuperHeroController extends Controller
     public function show(string $id)
     {
         $superHero = DB::table('superheroes')
-            ->join('power_users', 'superheroes.id_hero', '=', 'power_users.id_hero')
-            ->join('powers', 'power_users.id_power', '=', 'powers.id_power')
-            ->join('gadgets_users','superheroes.id_hero', '=', 'gadgets_users.id_hero')
-            ->join('gadgetS','gadgets_users.id_gadget', '=', 'gadgetS.id_gadget')
-            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*')
+            ->leftjoin('power_users', 'superheroes.id_hero', '=', 'power_users.id_hero')
+            ->leftjoin('powers', 'power_users.id_power', '=', 'powers.id_power')
+            ->leftjoin('gadgets_users','superheroes.id_hero', '=', 'gadgets_users.id_hero')
+            ->leftjoin('gadgetS','gadgets_users.id_gadget', '=', 'gadgetS.id_gadget')
+            ->leftjoin('vehicules_users','superheroes.id_hero', '=', 'vehicules_users.id_hero')
+            ->leftjoin('vehicules','vehicules_users.id_vehicule', '=', 'vehicules.id_vehicule')
+            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*','vehicules.*')
             ->where('superheroes.id_hero', $id)
 
             ->get();
