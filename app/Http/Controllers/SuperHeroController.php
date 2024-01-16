@@ -26,7 +26,7 @@ class SuperHeroController extends Controller
 
     public function index()
     {
-        $allSuperHero = SuperHeroModel::getAll();
+        $allSuperHero = SuperHeroModel::all();
         return response()->json($allSuperHero);
     }
 
@@ -133,7 +133,7 @@ class SuperHeroController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $updateSuperHero = SuperHeroController::find($id);
+        $updateSuperHero = SuperHeroModel::find($id);
         $updateSuperHero->firstname = $request->input('name');
         $updateSuperHero->lastname = $request->input('lastname');
         $updateSuperHero->alais = $request->input('alais');
