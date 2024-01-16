@@ -107,7 +107,7 @@ class SuperHeroController extends Controller
             ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*','vehicules.*')
             ->where('superheroes.id_hero', $id)
 
-            ->get();
+            ->first();
         return response() -> json($superHero);
     }
 
