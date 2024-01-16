@@ -83,7 +83,7 @@ class SuperHeroController extends Controller
     /**
      * @OA\Get(
      *     path="/superHero/{id}",
-     *     summary="Get a  spcefic specific super hero",
+     *     summary="Get a  spcefic values super hero get values from vehicul, gadget and power",
      *          @OA\Response(
      *          response=200,
      *          description="Successful operation",
