@@ -156,8 +156,16 @@ class SuperHeroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        if (SuperHeroModel::where('id', $id)->exists()) {
+            $superHeroToDestroy = SuperHeroModel::find($id);
+            $superHeroToDestroy->delete();
+            return response()->json([
+                "message" => "superhero $id deleted successfully"
+            ], 202);
+        } else {
+            return response()->json(["message" => "super hero $id not found"], 404);
+        }
     }
 }

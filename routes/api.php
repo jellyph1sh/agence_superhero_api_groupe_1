@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\gadgetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::get("/superHero/", [SuperHeroController::class, 'index']);
 Route::post("/superHero", [SuperHeroController::class,'store']);
 Route::get(superHero, [SuperHeroController::class, 'show']);
 Route::put(superHero, [SuperHeroController::class, 'update']);
+Route::delete("/superHero/delete/{id}", [SuperHeroController::class, 'destroy']);
+Route::put("/gadget/{id}", [gadgetController::class, 'update']);
+Route::post("/gadget", [gadgetController::class,'store']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
