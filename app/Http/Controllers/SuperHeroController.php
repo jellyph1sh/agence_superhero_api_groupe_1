@@ -5,11 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
 
+
 class SuperHeroController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/superhero",
+     *     summary="Get all super Heros",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
+
     public function index()
     {
         $allSuperHero = SuperHeroModel::getAll();
@@ -25,7 +39,19 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @OA\Post(
+     *     path="/superHeros",
+     *     summary="Creeate super hero",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function store(Request $request)
     {
@@ -58,7 +84,19 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/superHero/{id}",
+     *     summary="Get a  spcefic specific super hero",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function show(string $id)
     {
@@ -71,9 +109,7 @@ class SuperHeroController extends Controller
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+   
     public function edit(string $id)
     {
         $superHero = SuperHeroModel::find($id);
@@ -81,7 +117,19 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/superHero/{id}",
+     *     summary="update a spcecif superHeo",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function update(Request $request, string $id)
     {

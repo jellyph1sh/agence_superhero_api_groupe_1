@@ -19,12 +19,12 @@ use App\Http\Controllers\SuperHeroController;
 const superHero = "/superHero/{id}";
 Route::apiResource("users", UsersController::class);
 Route::get("/users/{id}", [UsersController::class, 'show']);
-Route::get("/users/delete/{id}", [UsersController::class, 'destroy']);
+Route::post("/users/delete/{id}", [UsersController::class, 'destroy']);
 Route::post("/users/add", [UsersController::class, 'store']);
 Route::put('users/update/{id}', [UsersController::class, 'update']);
 Route::get(superHero, [SuperHeroController::class, 'show']);
-Route::post(superHero, [SuperHeroController::class,'post']);
-Route::put(superHero, [SuperHeroController::class, 'put']);
+Route::post("/superHero/", [SuperHeroController::class,'store']);
+Route::put(superHero, [SuperHeroController::class, 'update']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
