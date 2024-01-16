@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Power_users_model;
+use App\Models\PowersModel;
 use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
+use Illuminate\Support\Facades\DB;
 
 
 class SuperHeroController extends Controller
@@ -94,16 +97,19 @@ class SuperHeroController extends Controller
      */
     public function show(string $id)
     {
-        $superHeroById = SuperHeroModel::find($id);
-        if (!empty($superHeroById)){
-            return response() -> json($superHeroById);
-        }else{
-            return response() -> json(["message : "=> "user $id not found"]);
-        }
+        $superHero = DB::table('superheroes')
+            ->join('power_users', 'superheroes.id_hero', '=', 'power_users.id_hero')
+            ->join('powers', 'power_users.id_power', '=', 'powers.id_power')
+            ->join('gadgets_users','superheroes.id_hero', '=', 'gadgets_users.id_hero')
+            ->join('gadgetS','gadgets_users.id_gadget', '=', 'gadgetS.id_gadget')
+            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*')
+            ->where('superheroes.id_hero', $id)
 
+            ->get();
+        return response() -> json($superHero);
     }
 
-   
+
     public function edit(string $id)
     {
         $superHero = SuperHeroModel::find($id);
