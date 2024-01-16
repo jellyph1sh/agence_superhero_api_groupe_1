@@ -6,14 +6,128 @@
     },
     "servers": [
         {
-            "url": "https://foo.localhost:8000/api/",
-            "description": "Learning env"
+            "url": "http://127.0.0.1:8000/documentation",
+            "description": "SuperHero app"
         }
     ],
     "paths": {
-        "/superHero": {
+        "/superhero": {
             "get": {
-                "operationId": "2e8426f2ac16289105533a781af3da30",
+                "tags": [
+                    "superHero"
+                ],
+                "summary": "Get all super Heros",
+                "operationId": "cbb6501145f81810523e21411b86cc36",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/superHeros": {
+            "post": {
+                "tags": [
+                    "superHero"
+                ],
+                "summary": "Creeate super hero",
+                "operationId": "e8a89edd13c99bfa96051fac6d1bfe48",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/superHero/{id}": {
+            "get": {
+                "tags": [
+                    "superHero"
+                ],
+                "summary": "Get a  spcefic specific super hero",
+                "operationId": "21240327206d4f76e233fc5e45f256d7",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "superHero"
+                ],
+                "summary": "update a spcecif superHeo",
+                "operationId": "fdb4134c49793bbc0409377c0e46b93d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "get all users",
+                "operationId": "5a61fd217e7500976e1ae5c5662a4903",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/users/add": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Register a new user",
+                "operationId": "a93109fee840a2df1203b1d752cac1c5",
+                "responses": {
+                    "200": {
+                        "description": "Successful add"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Get a list spcefic users",
+                "operationId": "ff5f10a2275aa6fe96d9a0ef05a069ce",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/users/update/{id}": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Update  a user with an id ",
+                "operationId": "8f8b91038bc27b20f347580da7b35026",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/users/delete/{id}": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "delete a  spcefic users",
+                "operationId": "629f4c89ea31726a3b17da0449e5a043",
                 "responses": {
                     "200": {
                         "description": "Successful operation"

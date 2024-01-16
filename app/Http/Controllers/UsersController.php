@@ -5,11 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Users;
 use Illuminate\Http\Request;
 
+
+ 
+
 class UsersController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
-     */
+     * @OA\Get(
+     *      path="/users",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      summary="get all users",
+            tags={"users"},
+     *     @OA\PathItem (
+     *     ),
+     * ),
+     
+     */ 
     public function index()
     {
         // On récupère tous les utilisateurs
@@ -24,6 +39,21 @@ class UsersController extends Controller
         // On récupère
     }
 
+    /**
+     * @OA\Post(
+     *      path="/users/add",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful add",
+     *      ),
+     *           summary="Register a new user",
+     * tags={"users"},
+
+     *     @OA\PathItem (
+     *     ),
+     * ),
+     
+     */
     public function store(Request $request)
     {
         $lastname = $request->input('lastname');
@@ -47,7 +77,18 @@ class UsersController extends Controller
     }
 
     /**
-     * Display the specified resource.
+* @OA\Get(
+ *     path="/users/{id}",
+ *     summary="Get a list spcefic users",
+ *          @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *      ),
+ * 
+ *      @OA\PathItem(
+ *      ),
+ *      tags={"users"},
+ * ),
      */
     public function show( $id)
     {
@@ -69,8 +110,21 @@ class UsersController extends Controller
         //
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * @OA\Post(
+     *     path="/users/update/{id}",
+     *     summary="Update  a user with an id ",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     * 
+     *      @OA\PathItem(
+     *      ),
+     *      tags={"users"},
+
+     * ),
      */
     public function update(Request $request, $id)
     {
@@ -86,8 +140,21 @@ class UsersController extends Controller
 
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * @OA\Put(
+     *     path="/users/delete/{id}",
+     *     summary="delete a  spcefic users",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"users"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function destroy($id)
     {

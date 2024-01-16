@@ -6,17 +6,24 @@ use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
 
 
-
 class SuperHeroController extends Controller
 {
     /**
-     * @SWG\Get(
-     *     path="api/superHero",
-     *     summary="Get a list of all superHero with",
-     *     @SWG\Response(response=200, description="Successful operation"),
-     *     @SWG\Response(response=400, description="Invalid request")
-     * )
+     * @OA\Get(
+     *     path="/superhero",
+     *     summary="Get all super Heros",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
+
     public function index()
     {
         $allSuperHero = SuperHeroModel::getAll();
@@ -31,13 +38,20 @@ class SuperHeroController extends Controller
   
     }
 
-    /** 
-     * @SWG\Post(
-     *     path="api/superHero",
-     *     summary="Post a new super hero ",
-     *     @SWG\Response(response=200, description="Successful operation"),
-     *     @SWG\Response(response=400, description="Invalid request")
-     * )
+    /**
+     * @OA\Post(
+     *     path="/superHeros",
+     *     summary="Creeate super hero",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function store(Request $request)
     {
@@ -70,13 +84,19 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * @SWG\Get(
-     *     path="api/superHero/{id}",
-     *     summary="Get a list of a specif superHero with id",
-     *      tags={"id"},
-     *     @SWG\Response(response=200, description="Successful operation"),
-     *     @SWG\Response(response=400, description="Invalid request")
-     * )    
+     * @OA\Get(
+     *     path="/superHero/{id}",
+     *     summary="Get a  spcefic specific super hero",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function show(string $id)
     {
@@ -89,15 +109,7 @@ class SuperHeroController extends Controller
 
     }
 
-    /**
-     * @SWG\Get(
-     *     path="api/superHero/{id}",
-     *     summary="diplay specif values",
-     *     tags={"id"},
-     *     @SWG\Response(response=200, description="Successful operation"),
-     *     @SWG\Response(response=400, description="Invalid request")
-     * )
-     */
+   
     public function edit(string $id)
     {
         $superHero = SuperHeroModel::find($id);
@@ -105,13 +117,19 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * @SWG\Put(
-     *     path="api/superHero/{id}",
-     *     summary="Update a specific super hero with id",
-     *     tags={"id"},
-     *     @SWG\Response(response=200, description="Successful operation"),
-     *     @SWG\Response(response=400, description="Invalid request")
-     * )
+     * @OA\Put(
+     *     path="/superHero/{id}",
+     *     summary="update a spcecif superHeo",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function update(Request $request, string $id)
     {

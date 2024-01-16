@@ -19,7 +19,7 @@ use App\Http\Controllers\SuperHeroController;
 const superHero = "/superHero/{id}";
 Route::apiResource("users", UsersController::class);
 Route::get("/users/{id}", [UsersController::class, 'show']);
-Route::get("/users/delete/{id}", [UsersController::class, 'destroy']);
+Route::post("/users/delete/{id}", [UsersController::class, 'destroy']);
 Route::post("/users/add", [UsersController::class, 'store']);
 Route::put('users/update/{id}', [UsersController::class, 'update']);
 Route::get(superHero, [SuperHeroController::class, 'show']);
