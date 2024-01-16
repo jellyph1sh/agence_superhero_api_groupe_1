@@ -60,11 +60,8 @@ class SuperHeroController extends Controller
         $alias = $request->input('alias');
         $sex = $request->input('sex');
         $hair_color = $request->input('hair_color');
-        $role = $request->input('role');
         $description = $request->input('description');
-        $sidekick = $request->input('sidekick');
         $wiki_url = $request->input('wiki_url');
-        $id_group = $request->input('id_group');
         $origin_planet = $request->input('origin_planet');
         $id_creator = $request->input('id_creator');
         $newSuperHero = new SuperHeroModel;
@@ -73,11 +70,8 @@ class SuperHeroController extends Controller
         $newSuperHero->alias = $alias;
         $newSuperHero->sex = $sex;
         $newSuperHero->hair_color = $hair_color;
-        $newSuperHero->role = $role;
         $newSuperHero->description = $description;
-        $newSuperHero->sidekick = $sidekick;
         $newSuperHero->wiki_url = $wiki_url;
-        $newSuperHero->id_group = $id_group;
         $newSuperHero->origin_planet = $origin_planet;
         $newSuperHero->id_creator = $id_creator;
         $newSuperHero->save();

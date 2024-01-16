@@ -23,7 +23,7 @@ Route::post("/users/delete/{id}", [UsersController::class, 'destroy']);
 Route::post("/users/add", [UsersController::class, 'store']);
 Route::put('users/update/{id}', [UsersController::class, 'update']);
 Route::get("/superHero/", [SuperHeroController::class, 'index']);
-Route::post(superHero, [SuperHeroController::class,'store']);
+Route::post("/superHero", [SuperHeroController::class,'store']);
 Route::get(superHero, [SuperHeroController::class, 'show']);
 Route::put(superHero, [SuperHeroController::class, 'update']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
