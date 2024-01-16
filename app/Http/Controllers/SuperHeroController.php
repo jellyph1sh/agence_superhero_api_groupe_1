@@ -5,10 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
 
+
+
 class SuperHeroController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @SWG\Get(
+     *     path="api/superHero",
+     *     summary="Get a list of all superHero with",
+     *     @SWG\Response(response=200, description="Successful operation"),
+     *     @SWG\Response(response=400, description="Invalid request")
+     * )
      */
     public function index()
     {
@@ -24,8 +31,13 @@ class SuperHeroController extends Controller
   
     }
 
-    /**
-     * Store a newly created resource in storage.
+    /** 
+     * @SWG\Post(
+     *     path="api/superHero",
+     *     summary="Post a new super hero ",
+     *     @SWG\Response(response=200, description="Successful operation"),
+     *     @SWG\Response(response=400, description="Invalid request")
+     * )
      */
     public function store(Request $request)
     {
@@ -58,7 +70,13 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @SWG\Get(
+     *     path="api/superHero/{id}",
+     *     summary="Get a list of a specif superHero with id",
+     *      tags={"id"},
+     *     @SWG\Response(response=200, description="Successful operation"),
+     *     @SWG\Response(response=400, description="Invalid request")
+     * )    
      */
     public function show(string $id)
     {
@@ -72,7 +90,13 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @SWG\Get(
+     *     path="api/superHero/{id}",
+     *     summary="diplay specif values",
+     *     tags={"id"},
+     *     @SWG\Response(response=200, description="Successful operation"),
+     *     @SWG\Response(response=400, description="Invalid request")
+     * )
      */
     public function edit(string $id)
     {
@@ -81,7 +105,13 @@ class SuperHeroController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @SWG\Put(
+     *     path="api/superHero/{id}",
+     *     summary="Update a specific super hero with id",
+     *     tags={"id"},
+     *     @SWG\Response(response=200, description="Successful operation"),
+     *     @SWG\Response(response=400, description="Invalid request")
+     * )
      */
     public function update(Request $request, string $id)
     {
