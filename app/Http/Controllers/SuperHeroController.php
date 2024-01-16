@@ -83,7 +83,7 @@ class SuperHeroController extends Controller
     /**
      * @OA\Get(
      *     path="/superHero/{id}",
-     *     summary="Get a  spcefic values super hero get values from vehicul, gadget and power",
+     *     summary="Get a  spcefic values super hero get values from vehicul, gadget cities ,power and groups",
      *          @OA\Response(
      *          response=200,
      *          description="Successful operation",
@@ -104,7 +104,11 @@ class SuperHeroController extends Controller
             ->leftjoin('gadgetS','gadgets_users.id_gadget', '=', 'gadgetS.id_gadget')
             ->leftjoin('vehicules_users','superheroes.id_hero', '=', 'vehicules_users.id_hero')
             ->leftjoin('vehicules','vehicules_users.id_vehicule', '=', 'vehicules.id_vehicule')
-            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*','vehicules.*')
+            ->leftjoin('protected_cities','superheroes.id_hero', '=', 'protected_cities.id_hero')
+            ->leftjoin('cities', 'protected_cities.id_city', '=', 'cities.id_city')
+            ->leftjoin('protected_cities_groups','cities.id_city', '=', 'protected_cities_groups.id_city')
+            ->leftjoin('groups', 'protected_cities_groups.id_group', '=', 'groups.id_group')
+            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*','vehicules.*', 'groups.*','cities.*')
             ->where('superheroes.id_hero', $id)
 
             ->first();
