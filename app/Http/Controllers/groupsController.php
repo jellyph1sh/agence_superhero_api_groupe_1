@@ -9,18 +9,14 @@ class groupsController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/groups}",
-     *     summary="show all groups",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"groups"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     path="/groups",
+     *     summary="Show all groups",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     tags={"groups"},
+     * )
      */
     public function index()
     {
@@ -32,18 +28,41 @@ class groupsController extends Controller
     /**
      * @OA\Post(
      *     path="/groups",
-     *     summary="stor new groups",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"groups"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     summary="Store new group",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="group_name",
+     *         in="query",
+     *         description="Name of the group to be stored",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="hq_city",
+     *         in="query",
+     *         description="Headquarter city of the group",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="id_chief",
+     *         in="query",
+     *         description="ID of the chief of the group",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     tags={"groups"},
+     * )
+     */
     public function store(Request $request)
     {
         $group_name = $request->input("group_name");
@@ -58,17 +77,22 @@ class groupsController extends Controller
     /**
      * @OA\Get(
      *     path="/groups/{id}",
-     *     summary="update specific groups",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"groups"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     summary="Show specific group",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the group to be retrieved",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"groups"},
+     * )
      */
     public function show(string $id)
     {
@@ -77,22 +101,54 @@ class groupsController extends Controller
     }
 
 
-
     /**
      * @OA\Put(
      *     path="/groups/{id}",
-     *     summary="update specific véhicule ",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"groups"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     summary="Update specific group",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the group to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="group_name",
+     *         in="query",
+     *         description="New name of the group (optional)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="hq_city",
+     *         in="query",
+     *         description="New headquarter city of the group (optional)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="id_chief",
+     *         in="query",
+     *         description="New ID of the chief of the group (optional)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="integer"
+     *         )
+     *     ),
+     *     tags={"groups"},
+     * )
+     */
+
     public function update(Request $request, string $id)
     {
         $updateGroup = GroupsModel::find($id);
@@ -119,19 +175,24 @@ class groupsController extends Controller
     }
     /**
      * @OA\Delete(
-     *     path="/groups/delete{id}",
-     *     summary="delete specific groups",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"groups"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     path="/groups/{id}",
+     *     summary="Delete specific group",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the group to be deleted",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"groups"},
+     * )
+     */
     public function destroy(string $id)
     {
         $destroyGroup = groupsModel::find($id);

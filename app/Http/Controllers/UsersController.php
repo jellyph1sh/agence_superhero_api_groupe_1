@@ -11,24 +11,19 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
-
     /**
      * @OA\Get(
      *      path="/users",
+     *      summary="Get all users",
      *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
      *      ),
-     *      summary="get all users",
-            tags={"users"},
-     *     @OA\PathItem (
-     *     ),
-     * ),
-     
-     */ 
+     *      tags={"users"},
+     * )
+     */
     public function index()
     {
-        // On récupère tous les utilisateurs
         $newUsers = Users::all();
 
         return response()->json($newUsers);    
@@ -39,21 +34,29 @@ class UsersController extends Controller
     {
         // On récupère
     }
-
     /**
      * @OA\Post(
      *      path="/users",
+     *      summary="Register a new user",
      *      @OA\Response(
      *          response=200,
      *          description="Successful add",
      *      ),
-     *           summary="Register a new user",
-     * tags={"users"},
-
-     *     @OA\PathItem (
-     *     ),
-     * ),
-     
+     *      tags={"users"},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="lastname", type="string"),
+     *              @OA\Property(property="firstname", type="string"),
+     *              @OA\Property(property="alias", type="string"),
+     *              @OA\Property(property="mail", type="string"),
+     *              @OA\Property(property="password", type="string"),
+     *              @OA\Property(property="role", type="string"),
+     *              @OA\Property(property="profile_picture", type="string"),
+     *          ),
+     *      ),
+     * )
      */
     public function store(Request $request)
     {
@@ -78,18 +81,24 @@ class UsersController extends Controller
     }
 
     /**
-* @OA\Get(
- *     path="/users/{id}",
- *     summary="Get a list spcefic users",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- * 
- *      @OA\PathItem(
- *      ),
- *      tags={"users"},
- * ),
+     * @OA\Get(
+     *      path="/users/{id}",
+     *      summary="Get a specific user",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of the user to be retrieved",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      tags={"users"},
+     * )
      */
     public function show( $id)
     {
@@ -112,21 +121,41 @@ class UsersController extends Controller
     }
 
 
-    /**
-     * @OA\Put(
-     *     path="/users/{id}",
-     *     summary="Update  a user with an id ",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     * 
-     *      @OA\PathItem(
-     *      ),
-     *      tags={"users"},
-
-     * ),
-     */public function update(Request $request, $id)
+ /**
+ * @OA\Put(
+ *      path="/users/{id}",
+ *      summary="Update a user with an id",
+ *      @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *      ),
+ *      @OA\Parameter(
+ *          name="id",
+ *          in="path",
+ *          description="ID of the user to be updated",
+ *          required=true,
+ *          @OA\Schema(
+ *              type="string"
+ *          )
+ *      ),
+ *      @OA\RequestBody(
+ *          required=true,
+ *          @OA\JsonContent(
+ *              type="object",
+ *              @OA\Property(property="lastname", type="string"),
+ *              @OA\Property(property="firstname", type="string"),
+ *              @OA\Property(property="alias", type="string"),
+ *              @OA\Property(property="mail", type="string"),
+ *              @OA\Property(property="password", type="string"),
+ *              @OA\Property(property="role", type="string"),
+ *              @OA\Property(property="profile_picture", type="string"),
+ *          ),
+ *      ),
+ *      tags={"users"},
+ * )
+ */
+    
+    public function update(Request $request, $id)
     {
         $userUpdate = Users::find($id);
 
@@ -151,20 +180,26 @@ class UsersController extends Controller
     }
 
 
+
     /**
      * @OA\Delete(
-     *     path="/users/{id}",
-     *     summary="delete a  spcefic users",
-     *          @OA\Response(
+     *      path="/users/{id}",
+     *      summary="Delete a specific user",
+     *      @OA\Response(
      *          response=200,
      *          description="Successful operation",
      *      ),
-     *  
-     *      tags={"users"},
-     *      @OA\PathItem(
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of the user to be deleted",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
      *      ),
-     *    
-     * ),
+     *      tags={"users"},
+     * )
      */
     public function destroy($id)
     {

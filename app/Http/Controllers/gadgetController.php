@@ -27,22 +27,35 @@ class gadgetController extends Controller
         $allGadget = gadgetModel::all();
         return response()->json($allGadget);
     }
-
     /**
      * @OA\Post(
      *     path="/gadget",
-     *     summary="stor new gadget",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"gadget"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     summary="Store a new gadget",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="gadget_name",
+     *         in="query",
+     *         description="Name of the gadget to be stored",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="gadget_description",
+     *         in="query",
+     *         description="Description of the gadget to be stored",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"gadget"},
+     * )
+     */
     public function store(Request $request)
     {
         $gadget_name = $request->input("gadget_name");
@@ -53,20 +66,43 @@ class gadgetController extends Controller
         $newGadget->save();
     }
     /**
- * @OA\Put(
- *     path="/gadget/{id}",
- *     summary="update specific gadget",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- *  
- *      tags={"gadget"},
- *      @OA\PathItem(
- *      ),
- *    
- * ),
- * */
+     * @OA\Put(
+     *     path="/gadget/{id}",
+     *     summary="Update specific gadget",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the gadget to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="gadget_name",
+     *         in="query",
+     *         description="New name of the gadget (optional)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="gadget_description",
+     *         in="query",
+     *         description="New description of the gadget (optional)",
+     *         required=false,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"gadget"},
+     * )
+     */
     function update(Request $request, string $id)
     {
         $gadgetToUpdate = gadgetController::find($id);
@@ -88,17 +124,22 @@ class gadgetController extends Controller
     /**
      * @OA\Get(
      *     path="/gadget/{id}",
-     *     summary="show specific gadget",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"gadget"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     summary="Show specific gadget",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the gadget to be retrieved",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"gadget"},
+     * )
      */
     public function show(string $id)
     {
@@ -108,19 +149,24 @@ class gadgetController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/gadget/delete/{id}",
-     *     summary="delete specific gadget",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"gadget"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     **/
+     *     path="/gadget/{id}",
+     *     summary="Delete specific gadget",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the gadget to be deleted",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"gadget"},
+     * )
+     */
 
     public function destroy($id)
     {

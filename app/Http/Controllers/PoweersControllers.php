@@ -10,18 +10,14 @@ class PoweersControllers extends Controller
     /**
      * @OA\Get(
      *     path="/power",
-     *     summary="delete specific powers",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"powers"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     summary="Show all powers",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     tags={"powers"},
+     * )
+     */
     public function index()
     {
         $getAllPower = PowersModel::all();
@@ -30,20 +26,33 @@ class PoweersControllers extends Controller
 
     /**
      * @OA\Post(
-     *     path="/powers/{id}",
-     *     summary="delete specific powers",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"powers"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
-    public function store(Request $request)
+     *     path="/powers",
+     *     summary="Store new power",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="power_name",
+     *         in="query",
+     *         description="Name of the power to be stored",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\Parameter(
+     *         name="power_description",
+     *         in="query",
+     *         description="Description of the power to be stored",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"powers"},
+     * )
+     */    public function store(Request $request)
     {
         $power_name = $request->input("power_name");
         $power_description = $request->input("power_description");
@@ -55,18 +64,23 @@ class PoweersControllers extends Controller
     /**
      * @OA\Get(
      *     path="/powers/{id}",
-     *     summary="show specif powers",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"powers"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     summary="Show specific power",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the power to be retrieved",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"powers"},
+     * )
+     */
     public function show(string $id)
     {
         $powers = PowersModel::find($id);
@@ -95,18 +109,23 @@ class PoweersControllers extends Controller
     /**
      * @OA\Delete(
      *     path="/powers/{id}",
-     *     summary="delete specific powers",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"powers"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
-     * */
+     *     summary="Delete specific power",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the power to be deleted",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"powers"},
+     * )
+     */
     public function destroy(string $id)
     {
         $deletPower = PowersModel::find($id);

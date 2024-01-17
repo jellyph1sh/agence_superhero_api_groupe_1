@@ -8,20 +8,16 @@ use Illuminate\Http\Request;
 class VehiculeController extends Controller
 {
     /**
-* @OA\Get(
-*     path="/vehicule",
-*     summary="show all vehicule",
-*          @OA\Response(
-*          response=200,
-*          description="Successful operation",
-*      ),
-*  
-*      tags={"vehicule"},
-*      @OA\PathItem(
-*      ),
-*    
-* ),
-*/
+     * @OA\Get(
+     *      path="/vehicule",
+     *      summary="Show all vehicles",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      tags={"vehicule"},
+     * )
+     */
 public function index()
 {
     $allVehicule = VehiculModel::all();
@@ -29,21 +25,26 @@ public function index()
 }
 
 
+
     /**
- * @OA\Post(
- *     path="/vehicule",
- *     summary="store new vehicule",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- *  
- *      tags={"vehicule"},
- *      @OA\PathItem(
- *      ),
- *    
- * ),
- * */
+     * @OA\Post(
+     *      path="/vehicule",
+     *      summary="Store new vehicle",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      tags={"vehicule"},
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="vehicule_name", type="string"),
+     *              @OA\Property(property="vehicule_description", type="string"),
+     *          ),
+     *      ),
+     * )
+     */
     public function store(Request $request)
     {
         $vehiculeName = $request->input('vehicule_name');
@@ -59,20 +60,25 @@ public function index()
     }
 
     /**
-* @OA\Get(
-*     path="/vehicule/{id}",
-*     summary="update specific vehicule",
-*          @OA\Response(
-*          response=200,
-*          description="Successful operation",
-*      ),
-*  
-*      tags={"vehicule"},
-*      @OA\PathItem(
-*      ),
-*    
-* ),
-*/
+     * @OA\Get(
+     *      path="/vehicule/{id}",
+     *      summary="Show specific vehicle",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of the vehicle to be retrieved",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      tags={"vehicule"},
+     * )
+     */
  public function show(string $id)
  {
      $showVehicule = VehiculModel::find($id);
@@ -86,21 +92,35 @@ public function index()
     {
         //
     }
+
     /**
- * @OA\Put(
- *     path="/vehicule/{id}",
- *     summary="update specific véhicule ",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- *  
- *      tags={"vehicule"},
- *      @OA\PathItem(
- *      ),
- *    
- * ),
- * */
+     * @OA\Put(
+     *      path="/vehicule/{id}",
+     *      summary="Update specific vehicle",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of the vehicle to be updated",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\RequestBody(
+     *          required=true,
+     *          @OA\JsonContent(
+     *              type="object",
+     *              @OA\Property(property="vehicule_name", type="string"),
+     *              @OA\Property(property="vehicule_description", type="string"),
+     *          ),
+     *      ),
+     *      tags={"vehicule"},
+     * )
+     */
 
     public function update(Request $request, string $id)
     {
@@ -123,21 +143,26 @@ public function index()
         ], 202);
     }
 
-       /**
- * @OA\Delete(
- *     path="/vehicule/{id}",
- *     summary="delete specific vehicule",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- *  
- *      tags={"vehicule"},
- *      @OA\PathItem(
- *      ),
- *    
- * ),
- * */
+    /**
+     * @OA\Delete(
+     *      path="/vehicule/{id}",
+     *      summary="Delete specific vehicle",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          description="ID of the vehicle to be deleted",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      tags={"vehicule"},
+     * )
+     */
     public function destroy(string $id)
     {
         $destroyVehicule = VehiculModel::find($id);

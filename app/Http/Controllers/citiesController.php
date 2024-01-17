@@ -9,7 +9,7 @@ class citiesController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/city}",
+     *     path="/city",
      *     summary="show all city",
      *          @OA\Response(
      *          response=200,
@@ -44,7 +44,33 @@ class citiesController extends Controller
      *          response=200,
      *          description="Successful operation",
      *      ),
-     *  
+     *  @OA\Parameter(
+ *         name="city_name",
+ *         in="path",
+ *         description="city_name of the city to be store",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ * @OA\Parameter(
+ *         name="latitude",
+ *         in="path",
+ *         description="latitude of the city to be store",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ * @OA\Parameter(
+ *         name="longitude",
+ *         in="path",
+ *         description="longitude of the city to be store",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
      *      tags={"city"},
      *      @OA\PathItem(
      *      ),
@@ -70,7 +96,15 @@ class citiesController extends Controller
 *          response=200,
 *          description="Successful operation",
 *      ),
-*  
+@OA\Parameter(
+ *         name="id",
+ *         in="path",
+ *         description="ID of the city to show",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="integer"
+ *         )
+ *     ),
 *      tags={"city"},
 *      @OA\PathItem(
 *      ),
@@ -83,28 +117,53 @@ class citiesController extends Controller
      return response()->json($showCitiiesById);
  }
 
-
-
     /**
      * @OA\Put(
-     *     path="/city/{id}",
-     *     summary="update specific véhicule ",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
+   *     path="/city/{id}",
+   *     summary="update specific city",
+   *          @OA\Response(
+   *          response=200,
+   *          description="Successful operation",
+   *      ),
+     *  @OA\Parameter(
+ *         name="city_name",
+ *         in="path",
+ *         description="city_name of the city to be store",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ * @OA\Parameter(
+ *         name="latitude",
+ *         in="path",
+ *         description="latitude of the city to be store",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
+ * @OA\Parameter(
+ *         name="longitude",
+ *         in="path",
+ *         description="longitude of the city to be store",
+ *         required=true,
+ *         @OA\Schema(
+ *             type="string"
+ *         )
+ *     ),
      *      tags={"city"},
      *      @OA\PathItem(
      *      ),
      *    
      * ),
-     * */public function update(Request $request, string $id)
+     * */
+
+
+    public function update(Request $request, string $id)
     {
-        // Recherche de la ville existante
         $updateCity = citiesModel::find($id);
 
-        // Vérifie si la ville existe
         if (!$updateCity) {
             return response()->json([
                 "message" => "City not found"
@@ -129,7 +188,7 @@ class citiesController extends Controller
 
     /**
      * @OA\Delete(
-     *     path="/city/delete{id}",
+     *     path="/city/{id}",
      *     summary="delete specific city",
      *          @OA\Response(
      *          response=200,

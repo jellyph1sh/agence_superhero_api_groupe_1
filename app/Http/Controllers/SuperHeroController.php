@@ -46,17 +46,31 @@ class SuperHeroController extends Controller
     /**
      * @OA\Post(
      *     path="/superHeros",
-     *     summary="Creeate super hero",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"superHero"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     summary="Create super hero",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="firstname", type="string"),
+     *             @OA\Property(property="lastname", type="string"),
+     *             @OA\Property(property="alias", type="string"),
+     *             @OA\Property(property="sex", type="string"),
+     *             @OA\Property(property="hair_color", type="string"),
+     *             @OA\Property(property="description", type="string"),
+     *             @OA\Property(property="wiki_url", type="string"),
+     *             @OA\Property(property="origin_planet", type="string"),
+     *             @OA\Property(property="id_creator", type="integer"),
+     *             @OA\Property(property="id_gadget", type="integer"),
+     *             @OA\Property(property="id_power", type="integer"),
+     *             @OA\Property(property="id_vehicule", type="integer"),
+     *         ),
+     *     ),
+     *     tags={"superHero"},
+     * )
      */
     public function store(Request $request)
     {
@@ -96,20 +110,26 @@ class SuperHeroController extends Controller
         $gadgetUser->save();
     }
 
+
     /**
      * @OA\Get(
      *     path="/superHero/{id}",
-     *     summary="Get a  spcefic values super hero get values from vehicul, gadget cities ,power and groups",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"superHero"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     summary="Get specific super hero with values from gadgets, cities, powers, and groups",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the super hero to be retrieved",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"superHero"},
+     * )
      */
     public function show(string $id)
     {
@@ -137,21 +157,39 @@ class SuperHeroController extends Controller
         $superHero = SuperHeroModel::find($id);
         return view('superHero.edit', compact('superHero'));    
     }
-
     /**
      * @OA\Put(
      *     path="/superHero/{id}",
-     *     summary="update a spcecif superHeo",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"superHero"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     summary="Update specific super hero",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the super hero to be updated",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="name", type="string"),
+     *             @OA\Property(property="lastname", type="string"),
+     *             @OA\Property(property="alais", type="string"),
+     *             @OA\Property(property="sex", type="string"),
+     *             @OA\Property(property="hair_color", type="string"),
+     *             @OA\Property(property="description", type="string"),
+     *             @OA\Property(property="wiki_url", type="string"),
+     *             @OA\Property(property="origin_planet", type="string"),
+     *         ),
+     *     ),
+     *     tags={"superHero"},
+     * )
      */
 public function update(Request $request, string $id)
 {
@@ -178,17 +216,22 @@ public function update(Request $request, string $id)
     /**
      * @OA\Delete(
      *     path="/superHero/{id}",
-     *     summary="delete specific hero",
-     *          @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
-     *      ),
-     *  
-     *      tags={"superHero"},
-     *      @OA\PathItem(
-     *      ),
-     *    
-     * ),
+     *     summary="Delete specific super hero",
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful operation",
+     *     ),
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         description="ID of the super hero to be deleted",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string"
+     *         )
+     *     ),
+     *     tags={"superHero"},
+     * )
      */
     public function destroy($id)
     {
