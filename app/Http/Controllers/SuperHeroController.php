@@ -135,23 +135,31 @@ class SuperHeroController extends Controller
      *    
      * ),
      */
-    public function update(Request $request, string $id)
-    {
-        $updateSuperHero = SuperHeroModel::find($id);
-        $updateSuperHero->firstname = $request->input('name');
-        $updateSuperHero->lastname = $request->input('lastname');
-        $updateSuperHero->alais = $request->input('alais');
-        $updateSuperHero->sexo = $request->input('sex');
-        $updateSuperHero->hair_color = $request->input('hair_color');
-        $updateSuperHero->description = $request->input('description');
-        $updateSuperHero->wiki_url = $request->input('wiki_url');
-        $updateSuperHero->origin_planet = $request->input('origin_planet');
-        $updateSuperHero->update();
-        return redirect()->back()->with('status', "Super Hero $id updated Successfully");
+public function update(Request $request, string $id)
+{
+    $updateSuperHero = SuperHeroModel::find($id);
+
+    if (!$updateSuperHero) {
+        return redirect()->back()->with('error', "Super Hero not found");
     }
+
+    $updateSuperHero->firstname = $request->input('name');
+    $updateSuperHero->lastname = $request->input('lastname');
+    $updateSuperHero->alais = $request->input('alais');
+    $updateSuperHero->sexo = $request->input('sex');
+    $updateSuperHero->hair_color = $request->input('hair_color');
+    $updateSuperHero->description = $request->input('description');
+    $updateSuperHero->wiki_url = $request->input('wiki_url');
+    $updateSuperHero->origin_planet = $request->input('origin_planet');
+
+    $updateSuperHero->save();
+
+    return redirect()->back()->with('status', "Super Hero $id updated successfully");
+}
+
     /**
      * @OA\Delete(
-     *     path="/superHero/delete/{id}",
+     *     path="/superHero/{id}",
      *     summary="delete specific hero",
      *          @OA\Response(
      *          response=200,

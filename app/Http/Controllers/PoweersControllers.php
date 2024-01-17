@@ -8,32 +8,65 @@ use Illuminate\Http\Request;
 class PoweersControllers extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
+     * @OA\Get(
+     *     path="/power",
+     *     summary="delete specific powers",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"powers"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     * */
     public function index()
     {
-        //
+        $getAllPower = PowersModel::all();
+        return response()->json($getAllPower);
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+     * @OA\Post(
+     *     path="/powers/{id}",
+     *     summary="delete specific powers",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"powers"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     * */
     public function store(Request $request)
     {
-        //
+        $power_name = $request->input("power_name");
+        $power_description = $request->input("power_description");
+        $newPower = new PowersModel;
+        $newPower->power_name = $power_name;
+        $newPower->power_description = $power_description;
+        $newPower->save();
     }
-
     /**
-     * Display the specified resource.
-     */
+     * @OA\Get(
+     *     path="/powers/{id}",
+     *     summary="show specif powers",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"powers"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     * */
     public function show(string $id)
     {
         $powers = PowersModel::find($id);
@@ -59,12 +92,27 @@ class PoweersControllers extends Controller
     {
         //
     }
-
     /**
-     * Remove the specified resource from storage.
-     */
+     * @OA\Delete(
+     *     path="/powers/{id}",
+     *     summary="delete specific powers",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"powers"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     * */
     public function destroy(string $id)
     {
-        //
+        $deletPower = PowersModel::find($id);
+        $deletPower -> delete();
+        return response()->json([
+            "message" => "delete $id deleted successfully"
+        ], 202);
     }
 }

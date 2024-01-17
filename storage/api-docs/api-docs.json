@@ -11,6 +11,58 @@
         }
     ],
     "paths": {
+        "/power": {
+            "get": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "delete specific powers",
+                "operationId": "a5d3a4839499d9cf86076420cfdb8661",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/powers/{id}": {
+            "get": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "show specif powers",
+                "operationId": "bee76060efcb1a9b34ea48a2c5549a7c",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "delete specific powers",
+                "operationId": "9198718a2218ac6fe70b76e1bdeea288",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "delete specific powers",
+                "operationId": "37f385caa8c9c12fe6b19081758e93f2",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
         "/superhero": {
             "get": {
                 "tags": [
@@ -63,15 +115,13 @@
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/superHero/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "superHero"
                 ],
                 "summary": "delete specific hero",
-                "operationId": "94f248ab9271794b25d882c63583df22",
+                "operationId": "f1b6b589ebf381753abf0504b119bcea",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -91,15 +141,13 @@
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/users/add": {
+            },
             "post": {
                 "tags": [
                     "users"
                 ],
                 "summary": "Register a new user",
-                "operationId": "a93109fee840a2df1203b1d752cac1c5",
+                "operationId": "65d0a1caf21e84c53fa0f2b8271f26c6",
                 "responses": {
                     "200": {
                         "description": "Successful add"
@@ -119,43 +167,25 @@
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/users/update/{id}": {
-            "post": {
-                "tags": [
-                    "users"
-                ],
-                "summary": "Update  a user with an id ",
-                "operationId": "8f8b91038bc27b20f347580da7b35026",
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    }
-                }
-            }
-        },
-        "/users/delete/{id}": {
+            },
             "put": {
                 "tags": [
                     "users"
                 ],
-                "summary": "delete a  spcefic users",
-                "operationId": "629f4c89ea31726a3b17da0449e5a043",
+                "summary": "Update  a user with an id ",
+                "operationId": "e28d30345d9c7238299ebdbbbbbb3860",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/vehicule}": {
-            "get": {
+            },
+            "delete": {
                 "tags": [
-                    "vehicule"
+                    "users"
                 ],
-                "summary": "show all vehicule",
-                "operationId": "fd4ac9ab43ebf7effee5bba95f48bc15",
+                "summary": "delete a  spcefic users",
+                "operationId": "f1c4cdc294934242a4db00662a78305a",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -164,6 +194,18 @@
             }
         },
         "/vehicule": {
+            "get": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "show all vehicule",
+                "operationId": "63ebc0f59fef71916c7aab860ea83173",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "vehicule"
@@ -201,15 +243,13 @@
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/vehicule/delete{id}": {
+            },
             "delete": {
                 "tags": [
                     "vehicule"
                 ],
                 "summary": "delete specific vehicule",
-                "operationId": "fec75a97d9ded7d1893f509a075a2bee",
+                "operationId": "bcbc02694b85e9ae565092ff8e9a5220",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -285,6 +325,20 @@
                 }
             }
         },
+        "/gadget}": {
+            "get": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "show all gadget",
+                "operationId": "12c8dc42359e8e57f6124b78430c9abc",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
         "/gadget": {
             "post": {
                 "tags": [
@@ -300,6 +354,18 @@
             }
         },
         "/gadget/{id}": {
+            "get": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "show specific gadget",
+                "operationId": "4f109d6d440ef05e6ca5d0361dbc6ae2",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "gadget"

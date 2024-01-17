@@ -9,7 +9,7 @@ class VehiculeController extends Controller
 {
     /**
 * @OA\Get(
-*     path="/vehicule}",
+*     path="/vehicule",
 *     summary="show all vehicule",
 *          @OA\Response(
 *          response=200,
@@ -101,23 +101,31 @@ public function index()
  *    
  * ),
  * */
+
     public function update(Request $request, string $id)
     {
         $updateVehicule = VehiculModel::find($id);
-        $vehicule_name = $updateVehicule-> input('vehicule_name');
-        $vehicule_description = $updateVehicule-> input('vehicule_description');
-        $newVehicule = new VehiculModel;
-        $newVehicule -> vehicule_name = $vehicule_name;
-        $newVehicule->vehicule_description = $vehicule_description;
-        $newVehicule->update();
+
+        if (!$updateVehicule) {
+            return response()->json(["error" => "Vehicule not found"], 404);
+        }
+
+        $vehicule_name = $request->input('vehicule_name');
+        $vehicule_description = $request->input('vehicule_description');
+
+        $updateVehicule->vehicule_name = $vehicule_name;
+        $updateVehicule->vehicule_description = $vehicule_description;
+
+        $updateVehicule->save();
+
         return response()->json([
-            "message" => "superhero $id deleted successfully"
+            "message" => "Vehicule $id updated successfully"
         ], 202);
     }
 
        /**
  * @OA\Delete(
- *     path="/vehicule/delete{id}",
+ *     path="/vehicule/{id}",
  *     summary="delete specific vehicule",
  *          @OA\Response(
  *          response=200,

@@ -99,38 +99,49 @@ class citiesController extends Controller
      *      ),
      *    
      * ),
-     * */
-    public function update(Request $request, string $id)
+     * */public function update(Request $request, string $id)
     {
+        // Recherche de la ville existante
         $updateCity = citiesModel::find($id);
+
+        // Vérifie si la ville existe
+        if (!$updateCity) {
+            return response()->json([
+                "message" => "City not found"
+            ], 404);
+        }
+
         $cityName = $request->input('city_name');
         $longitude = $request->input('longitude');
         $latitude = $request->input('latitude');
-        $newCity = new citiesModel;
-        $newCity->cityName = $cityName;
-        $newCity->longitude = $longitude;
-        $newCity->latitude = $latitude;
-        $newCity->update();
+
+        $updateCity->cityName = $cityName;
+        $updateCity->longitude = $longitude;
+        $updateCity->latitude = $latitude;
+
+        $updateCity->save();
+
         return response()->json([
-            "message" => "group $id update successfully"
+            "message" => "City $id updated successfully"
         ], 202);
     }
 
-        /**
- * @OA\Delete(
- *     path="/city/delete{id}",
- *     summary="delete specific city",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- *  
- *      tags={"city"},
- *      @OA\PathItem(
- *      ),
- *    
- * ),
- * */
+
+    /**
+     * @OA\Delete(
+     *     path="/city/delete{id}",
+     *     summary="delete specific city",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"city"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     * */
     public function destroy(string $id)
     {
         $destroyCity = citiesModel::find($id);

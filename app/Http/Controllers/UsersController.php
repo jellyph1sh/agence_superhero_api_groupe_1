@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 
- 
+
 
 class UsersController extends Controller
 {
@@ -41,7 +42,7 @@ class UsersController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/users/add",
+     *      path="/users",
      *      @OA\Response(
      *          response=200,
      *          description="Successful add",
@@ -112,8 +113,8 @@ class UsersController extends Controller
 
 
     /**
-     * @OA\Post(
-     *     path="/users/update/{id}",
+     * @OA\Put(
+     *     path="/users/{id}",
      *     summary="Update  a user with an id ",
      *          @OA\Response(
      *          response=200,
@@ -125,25 +126,34 @@ class UsersController extends Controller
      *      tags={"users"},
 
      * ),
-     */
-    public function update(Request $request, $id)
+     */public function update(Request $request, $id)
     {
         $userUpdate = Users::find($id);
-        $userUpdate -> lastname = $request->input('lastname');
-        $userUpdate-> firstname = $request->input('firstname');
-        $userUpdate-> alias = $request->input('alias');
-        $userUpdate-> mail = $request->input('mail');
-        $userUpdate-> password = $request->input('password');
-        $userUpdate-> role = $request->input('role');
-        $userUpdate-> profile_picture = $request->input('profile_picture');
+
+        if (!$userUpdate) {
+            return response()->json(["error" => "User not found"], 404);
+        }
+
+        $userUpdate->lastname = $request->input('lastname');
+        $userUpdate->firstname = $request->input('firstname');
+        $userUpdate->alias = $request->input('alias');
+        $userUpdate->mail = $request->input('mail');
+        $userUpdate->role = $request->input('role');
+        $userUpdate->profile_picture = $request->input('profile_picture');
+
+        if ($request->filled('password')) {
+            $userUpdate->password = Hash::make($request->input('password'));
+        }
+
         $userUpdate->save();
 
+        return response()->json(["message" => "User updated successfully"], 200);
     }
 
 
     /**
-     * @OA\Put(
-     *     path="/users/delete/{id}",
+     * @OA\Delete(
+     *     path="/users/{id}",
      *     summary="delete a  spcefic users",
      *          @OA\Response(
      *          response=200,
