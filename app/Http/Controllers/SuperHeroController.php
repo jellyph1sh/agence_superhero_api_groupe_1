@@ -144,15 +144,25 @@ class SuperHeroController extends Controller
         $updateSuperHero->sexo = $request->input('sex');
         $updateSuperHero->hair_color = $request->input('hair_color');
         $updateSuperHero->description = $request->input('description');
-        $updateSuperHero->sidekick = $request->input('sidekick');
         $updateSuperHero->wiki_url = $request->input('wiki_url');
         $updateSuperHero->origin_planet = $request->input('origin_planet');
         $updateSuperHero->update();
         return redirect()->back()->with('status', "Super Hero $id updated Successfully");
     }
-
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     *     path="/superHero/delete/{id}",
+     *     summary="delete specific hero",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"superHero"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
      */
     public function destroy($id)
     {

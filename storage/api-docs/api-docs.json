@@ -44,7 +44,7 @@
                 "tags": [
                     "superHero"
                 ],
-                "summary": "Get a  spcefic specific super hero",
+                "summary": "Get a  spcefic values super hero get values from vehicul, gadget cities ,power and groups",
                 "operationId": "21240327206d4f76e233fc5e45f256d7",
                 "responses": {
                     "200": {
@@ -58,6 +58,20 @@
                 ],
                 "summary": "update a spcecif superHeo",
                 "operationId": "fdb4134c49793bbc0409377c0e46b93d",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/superHero/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "superHero"
+                ],
+                "summary": "delete specific hero",
+                "operationId": "94f248ab9271794b25d882c63583df22",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -128,6 +142,48 @@
                 ],
                 "summary": "delete a  spcefic users",
                 "operationId": "629f4c89ea31726a3b17da0449e5a043",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget": {
+            "post": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "stor new gadget",
+                "operationId": "fd2d2f967874d69b4022e0551cf311e1",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget/{id}": {
+            "put": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "update specific gadget",
+                "operationId": "46595324241d060d15e1e0fab7735207",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "delete specific gadget",
+                "operationId": "1ecb67dcaf993fd35219ea80f267b2f9",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
