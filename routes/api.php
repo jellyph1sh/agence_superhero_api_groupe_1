@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\citiesController;
 use App\Http\Controllers\gadgetController;
+use App\Http\Controllers\VehiculeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,11 +33,16 @@ Route::delete("/superHero/delete/{id}", [SuperHeroController::class, 'destroy'])
 Route::put("/gadget/{id}", [gadgetController::class, 'update']);
 Route::post("/gadget", [gadgetController::class,'store']);
 Route::delete("/gadget/delete/{id}", [gadgetController::class, 'destroy']);
-Route::get("/vehicule/{id}", [gadgetController::class, 'show']);
-Route::get("/vehicule", [gadgetController::class, 'index']);
-Route::Put("/vehicule/{id}", [gadgetController::class, 'edit']);
-Route::delete("/vehicule/delete/{id}", [gadgetController::class, 'destroy']);
-Route::post("/vehicule", [gadgetController::class, 'store']);
+Route::get("/vehicule/{id}", [VehiculeController::class, 'show']);
+Route::get("/vehicule", [VehiculeController::class, 'index']);
+Route::put("/vehicule/{id}", [VehiculeController::class, 'updtade']);
+Route::delete("/vehicule/delete/{id}", [VehiculeController::class, 'destroy']);
+Route::post("/vehicule", [VehiculeController::class, 'store']);
+Route::get("/city/{id}", [gadgetController::class, 'show']);
+Route::get("/city", [citiesController::class, 'index']);
+Route::put("/city/{id}", [citiesController::class, 'updtade']);
+Route::delete("/city/delete/{id}", [citiesController::class, 'destroy']);
+Route::post("/city", [citiesController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });

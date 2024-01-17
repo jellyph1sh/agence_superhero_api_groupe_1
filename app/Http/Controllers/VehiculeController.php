@@ -8,25 +8,42 @@ use Illuminate\Http\Request;
 class VehiculeController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $allVehicule = VehiculModel::all();
-        return response()->json($allVehicule);
-    }
+* @OA\Get(
+*     path="/vehicule}",
+*     summary="show all vehicule",
+*          @OA\Response(
+*          response=200,
+*          description="Successful operation",
+*      ),
+*  
+*      tags={"vehicule"},
+*      @OA\PathItem(
+*      ),
+*    
+* ),
+*/
+public function index()
+{
+    $allVehicule = VehiculModel::all();
+    return response()->json($allVehicule);
+}
+
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+ * @OA\Post(
+ *     path="/vehicule",
+ *     summary="store new vehicule",
+ *          @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *      ),
+ *  
+ *      tags={"vehicule"},
+ *      @OA\PathItem(
+ *      ),
+ *    
+ * ),
+ * */
     public function store(Request $request)
     {
         $vehiculeName = $request->input('vehicule_name');
@@ -42,25 +59,48 @@ class VehiculeController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        $showVehicule = VehiculModel::find($id);
-        return response()->json($showVehicule);
-    }
+* @OA\Get(
+*     path="/vehicule/{id}",
+*     summary="update specific vehicule",
+*          @OA\Response(
+*          response=200,
+*          description="Successful operation",
+*      ),
+*  
+*      tags={"vehicule"},
+*      @OA\PathItem(
+*      ),
+*    
+* ),
+*/
+ public function show(string $id)
+ {
+     $showVehicule = VehiculModel::find($id);
+     return response()->json($showVehicule);
+ }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+ /**
+  * Show the form for editing the specified resource.
+  */
     public function edit(string $id)
     {
         //
     }
-
     /**
-     * Update the specified resource in storage.
-     */
+ * @OA\Put(
+ *     path="/vehicule/{id}",
+ *     summary="update specific véhicule ",
+ *          @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *      ),
+ *  
+ *      tags={"vehicule"},
+ *      @OA\PathItem(
+ *      ),
+ *    
+ * ),
+ * */
     public function update(Request $request, string $id)
     {
         $updateVehicule = VehiculModel::find($id);
@@ -75,9 +115,21 @@ class VehiculeController extends Controller
         ], 202);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+       /**
+ * @OA\Delete(
+ *     path="/vehicule/delete{id}",
+ *     summary="delete specific vehicule",
+ *          @OA\Response(
+ *          response=200,
+ *          description="Successful operation",
+ *      ),
+ *  
+ *      tags={"vehicule"},
+ *      @OA\PathItem(
+ *      ),
+ *    
+ * ),
+ * */
     public function destroy(string $id)
     {
         $destroyVehicule = VehiculModel::find($id);

@@ -26,7 +26,7 @@ class gadgetController extends Controller
     {
         $gadget_name = $request->input("gadget_name");
         $gadget_description = $request->input("gadget_description");
-        $newGadget = new gadgetModel();
+        $newGadget = new gadgetModel;
         $newGadget->gadget_name = $gadget_name;
         $newGadget->gadget_description = $gadget_description;
         $newGadget->save();
