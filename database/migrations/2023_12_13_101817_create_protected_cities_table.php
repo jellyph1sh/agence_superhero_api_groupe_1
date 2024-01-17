@@ -17,10 +17,10 @@ class CreateProtectedCitiesTable extends Migration
 
         Schema::create('protected_cities', function (Blueprint $table) {
             $table->id('id_protected_cities');
-            $table->bigInteger('id_hero')->unsigned();
+            $table->bigInteger('id_hero');
             $table->foreign('id_hero')->references('id_hero')->on('superheroes')->onDelete('cascade');
             $table->bigInteger('id_city');
-            $table->foreign('id_city')->references('id_city')->on('cities');
+            $table->foreign('id_city')->references('id_city')->on('cities')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

@@ -2,12 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gadgets_users_Model;
-use App\Models\Power_users_model;
-use App\Models\PowersModel;
-use App\Models\Protected_cities_Model;
-use App\Models\Vehicul_Users_Model;
-use App\Models\VehiculeusersModel;
 use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
 use Illuminate\Support\Facades\DB;
@@ -164,34 +158,7 @@ class SuperHeroController extends Controller
     {
         $superHeroToDestroy = SuperHeroModel::find($id);
 
-        if ($superHeroToDestroy) {
-            $vehicul_users = VehiculeusersModel::where('id_hero', $id)->first();
-            $gadetUsers = Gadgets_users_Model::where('id_hero', $id)->first();
-            $powers_users = Power_users_model::where('id_hero', $id)->first();
-            $protectedCities = Protected_cities_Model::where('id_hero', $id)->first();
-
-            if ($vehicul_users) {
-                $vehicul_users->delete();
-            }
-
-            if ($gadetUsers) {
-                $gadetUsers->delete();
-            }
-
-            if ($powers_users) {
-                $powers_users->delete();
-            }
-
-            if ($protectedCities) {
-                $protectedCities->delete();
-            }
-
-            $superHeroToDestroy->delete();
-        } else {
-            // Gérer le cas où l'enregistrement SuperHeroModel avec l'ID donné n'est pas trouvé.
-            // Vous pouvez enregistrer une erreur, renvoyer une réponse, ou effectuer une autre action.
-        }
-
+       $superHeroToDestroy->delete();
 
         return response()->json([
                 "message" => "superhero $id deleted successfully"

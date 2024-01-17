@@ -19,9 +19,9 @@ class CreateGroupsTable extends Migration
             $table->id('id_group');
             $table->string('group_names');
             $table->bigInteger('id_chief');
-            $table->foreign('id_chief')->references('id_hero')->on('superheroes');
+            $table->foreign('id_chief')->references('id_hero')->on('superheroes')->onDelete('cascade');
             $table->bigInteger('hq_city');
-            $table->foreign('hq_city')->references('id_city')->on('cities');
+            $table->foreign('hq_city')->references('id_city')->on('cities')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

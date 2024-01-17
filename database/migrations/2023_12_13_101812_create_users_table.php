@@ -26,11 +26,6 @@ class CreateUsersTable extends Migration
             $table->string('profile_picture');
         });
 
-        // Ajoute la clé étrangère avec suppression en cascade
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreign('id_user')->references('id_hero')->on('superheroes')->onDelete('cascade');
-        });
-
         Schema::enableForeignKeyConstraints();
     }
 

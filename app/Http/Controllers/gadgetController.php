@@ -35,15 +35,8 @@ class gadgetController extends Controller
     }
     public function destroy($id)
     {
-        if (gadgetModel::where('id', $id)->exists()) {
-            $gadgetToDestroy = gadgetModel::find($id);
-            $gadgetToDestroy->delete();
-            return response()->json([
-                "message" => "gadget $id deleted successfully"
-            ], 202);
-        } else {
-            return response()->json(["message" => "gadget $id not found"], 404);
-        }
+        $destroyGadget = gadgetModel::find($id);
+        $destroyGadget -> delete();
     }
 
 }

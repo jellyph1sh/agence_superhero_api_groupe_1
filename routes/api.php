@@ -30,6 +30,7 @@ Route::put(superHero, [SuperHeroController::class, 'update']);
 Route::delete("/superHero/delete/{id}", [SuperHeroController::class, 'destroy']);
 Route::put("/gadget/{id}", [gadgetController::class, 'update']);
 Route::post("/gadget", [gadgetController::class,'store']);
+Route::delete("/gadget/{id}", [gadgetController::class, 'destroy']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
