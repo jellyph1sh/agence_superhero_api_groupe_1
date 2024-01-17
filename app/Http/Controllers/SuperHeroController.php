@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gadgets_users_Model;
 use App\Models\Power_users_model;
+use App\Models\Protected_cities_Model;
 use App\Models\Vehicul_users_Model;
 use App\Models\vehiculeUserModel;
 use Illuminate\Http\Request;
@@ -67,6 +68,8 @@ class SuperHeroController extends Controller
      *             @OA\Property(property="id_gadget", type="integer"),
      *             @OA\Property(property="id_power", type="integer"),
      *             @OA\Property(property="id_vehicule", type="integer"),
+     *             @OA\Property(property="id_city", type="integer"),
+
      *         ),
      *     ),
      *     tags={"superHero"},
@@ -96,18 +99,22 @@ class SuperHeroController extends Controller
         $newSuperHero->save();
 
         $superHeroId = $newSuperHero->id_hero;
+        $protected_cities = new Protected_cities_Model;
         $gadgetUser = new Gadgets_users_Model;
         $vehiculeUser = new Vehicul_users_Model;
         $powerUser = new Power_users_model;
+        $protected_cities-> id_hero = $superHeroId;
         $powerUser->id_hero = $superHeroId;
         $vehiculeUser->id_hero = $superHeroId;
         $gadgetUser->id_hero = $superHeroId;
+        $protected_cities->id_city = $request->input('city');
         $gadgetUser->id_gadget =$request->input('id_gadget');
         $powerUser->id_power = $request->input('id_power');
         $vehiculeUser->id_vehicule = $request->input('id_vehicule');
         $powerUser->save();
         $vehiculeUser->save();
         $gadgetUser->save();
+        $protected_cities->save();
     }
 
 
