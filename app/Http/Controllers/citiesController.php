@@ -103,9 +103,9 @@ class citiesController extends Controller
     public function update(Request $request, string $id)
     {
         $updateCity = citiesModel::find($id);
-        $cityName = $updateCity->input('city_name');
-        $longitude = $updateCity->input('longitude');
-        $latitude = $updateCity->input('latitude');
+        $cityName = $request->input('city_name');
+        $longitude = $request->input('longitude');
+        $latitude = $request->input('latitude');
         $newCity = new citiesModel;
         $newCity->cityName = $cityName;
         $newCity->longitude = $longitude;

@@ -10,4 +10,6 @@ class VehiculModel extends Model
     protected $table = 'vehicules';
     protected $primaryKey = 'id_vehicule';
     use HasFactory;
+    public $timestamps = false;
+
 }

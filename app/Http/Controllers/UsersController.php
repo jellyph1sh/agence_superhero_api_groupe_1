@@ -158,14 +158,11 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        if (Users::where('id', $id)->exists()){
             $newUser = Users::find($id);
             $newUser->delete();
             return response()->json([
                 "message" => "user $id deleted successfully"
             ], 202);
-        }else{
-            return response()->json(["message" => "user $id not found"], 404);
-        }
+        
     }
 }

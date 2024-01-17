@@ -49,7 +49,7 @@ public function index()
         $vehiculeName = $request->input('vehicule_name');
         $vehicule_description = $request->input('vehicule_description');
         $newVehicule = new VehiculModel();
-        $newVehicule -> vehucule_name = $vehiculeName;
+        $newVehicule -> vehicule_name = $vehiculeName;
         $newVehicule -> vehicule_description = $vehicule_description;
         $newVehicule -> save();
 

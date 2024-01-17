@@ -8,6 +8,27 @@ use Illuminate\Http\Request;
 class gadgetController extends Controller
 {
     /**
+     * @OA\Get(
+     *     path="/gadget}",
+     *     summary="show all gadget",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"gadget"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     */
+    public function index()
+    {
+        $allGadget = gadgetModel::all();
+        return response()->json($allGadget);
+    }
+
+    /**
      * @OA\Post(
      *     path="/gadget",
      *     summary="stor new gadget",
@@ -46,16 +67,17 @@ class gadgetController extends Controller
  *    
  * ),
  * */
-function update(Request $request, string $id){
-    $gadgetToUpdate = gadgetController::find($id);
+    function update(Request $request, string $id)
+    {
+        $gadgetToUpdate = gadgetController::find($id);
     if (!empty($request->input("gadget_name"))) {
         $gadgetToUpdate->gadget_name = $request->input('gadget_name');
-        $gadgetToUpdate->update();
+        $gadgetToUpdate->save();
         return redirect()->back()->with('status', "gadget update succefully");
 
     }elseif(!empty($request->input("gadget_description"))){
         $gadgetToUpdate->gadget_description = $request->input('gadget_description');
-        $gadgetToUpdate->update();
+        $gadgetToUpdate->save();
         return redirect()->back()->with('status', "gadget update succefully");
 
     }else{
@@ -64,20 +86,42 @@ function update(Request $request, string $id){
     }
 }
     /**
- * @OA\Delete(
- *     path="/gadget/delete/{id}",
- *     summary="delete specific gadget",
- *          @OA\Response(
- *          response=200,
- *          description="Successful operation",
- *      ),
- *  
- *      tags={"gadget"},
- *      @OA\PathItem(
- *      ),
- *    
- * ),
- **/
+     * @OA\Get(
+     *     path="/gadget/{id}",
+     *     summary="show specific gadget",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"gadget"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     */
+    public function show(string $id)
+    {
+        $showGadget = gadgetModel::find($id);
+        return response()->json($showGadget);
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/gadget/delete/{id}",
+     *     summary="delete specific gadget",
+     *          @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *      ),
+     *  
+     *      tags={"gadget"},
+     *      @OA\PathItem(
+     *      ),
+     *    
+     * ),
+     **/
+
     public function destroy($id)
     {
         $destroyGadget = gadgetModel::find($id);

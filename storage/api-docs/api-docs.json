@@ -149,6 +149,142 @@
                 }
             }
         },
+        "/vehicule}": {
+            "get": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "show all vehicule",
+                "operationId": "fd4ac9ab43ebf7effee5bba95f48bc15",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicule": {
+            "post": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "store new vehicule",
+                "operationId": "e2bf48717eb51d3b1b96ad494225e0f8",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicule/{id}": {
+            "get": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "update specific vehicule",
+                "operationId": "ce6a41bace2b9fda3f9c760f122380e2",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "update specific véhicule ",
+                "operationId": "48828bb74123f53b921630fae0af73dd",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicule/delete{id}": {
+            "delete": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "delete specific vehicule",
+                "operationId": "fec75a97d9ded7d1893f509a075a2bee",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city}": {
+            "get": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "show all city",
+                "operationId": "b5829530ccc8c5612e154ac53e0b2e7f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city": {
+            "post": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "stor new city",
+                "operationId": "407d0575f5b641753cf48f201b5da113",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city/{id}": {
+            "get": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "update specific city",
+                "operationId": "dc7ad1a813781d729dccc8a9e58a0adb",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "update specific véhicule ",
+                "operationId": "cda145e05e8d601f5224674abcc3ea04",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city/delete{id}": {
+            "delete": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "delete specific city",
+                "operationId": "8fd897d04eb2a642c77eef021fdae040",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
         "/gadget": {
             "post": {
                 "tags": [
@@ -184,6 +320,74 @@
                 ],
                 "summary": "delete specific gadget",
                 "operationId": "1ecb67dcaf993fd35219ea80f267b2f9",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups}": {
+            "get": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "show all groups",
+                "operationId": "d2b3aa4cbe5a1ad33ec887932ed77a6f",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups": {
+            "post": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "stor new groups",
+                "operationId": "cfddad846fa7ec55ac2f286c0664e5c1",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups/{id}": {
+            "get": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "update specific groups",
+                "operationId": "fb50370d6ed90ecefc05bf834096917a",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "update specific véhicule ",
+                "operationId": "12d5bed4fd92228e2f1d783c8cc9e34a",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups/delete{id}": {
+            "delete": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "delete specific groups",
+                "operationId": "dcc37988b3f6178cab6be8ec94377f2a",
                 "responses": {
                     "200": {
                         "description": "Successful operation"

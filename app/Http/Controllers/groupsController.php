@@ -24,7 +24,7 @@ class groupsController extends Controller
      */
     public function index()
     {
-        $allGroup = groupsController::all();
+        $allGroup = groupsModel::all();
         return response()->json($allGroup);
     }
 
@@ -95,20 +95,28 @@ class groupsController extends Controller
      * */
     public function update(Request $request, string $id)
     {
-        $updateCity = groupsModel::find($id);
-        $group_names = $updateCity->input('group_names');
-        $id_chief = $updateCity->input('id_chief');
-        $hq_city = $updateCity->input('hq_city');
-        $newGroup = new groupsModel;
-        $newGroup->group_names = $group_names;
-        $newGroup->id_chief = $id_chief;
-        $newGroup-> hq_city= $hq_city;
-        $newGroup->update();
-        return response()->json([
-            "message" => "group $id updated successfully"
-        ], 202);
-    }
+        $updateGroup = GroupsModel::find($id);
 
+        if (!$updateGroup) {
+            return response()->json([
+                "error" => "Group not found"
+            ], 404);
+        }
+
+        $group_names = $request->input('group_names');
+        $id_chief = $request->input('id_chief');
+        $hq_city = $request->input('hq_city');
+
+        $updateGroup->group_names = $group_names;
+        $updateGroup->id_chief = $id_chief;
+        $updateGroup->hq_city = $hq_city;
+
+        $updateGroup->save();
+
+        return response()->json([
+            "message" => "Group $id updated successfully"
+        ], 200);
+    }
     /**
      * @OA\Delete(
      *     path="/groups/delete{id}",
