@@ -9,14 +9,14 @@ class citiesController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/vehicule}",
-     *     summary="show all vehicule",
+     *     path="/city}",
+     *     summary="show all city",
      *          @OA\Response(
      *          response=200,
      *          description="Successful operation",
      *      ),
      *  
-     *      tags={"vehicule"},
+     *      tags={"city"},
      *      @OA\PathItem(
      *      ),
      *    
@@ -38,14 +38,14 @@ class citiesController extends Controller
 
     /**
      * @OA\Post(
-     *     path="/gadget",
-     *     summary="stor new gadget",
+     *     path="/city",
+     *     summary="stor new city",
      *          @OA\Response(
      *          response=200,
      *          description="Successful operation",
      *      ),
      *  
-     *      tags={"gadget"},
+     *      tags={"city"},
      *      @OA\PathItem(
      *      ),
      *    
@@ -109,10 +109,10 @@ class citiesController extends Controller
         $newCity = new citiesModel;
         $newCity->cityName = $cityName;
         $newCity->longitude = $longitude;
-        $newCity->longitude = $latitude;
+        $newCity->latitude = $latitude;
         $newCity->update();
         return response()->json([
-            "message" => "superhero $id deleted successfully"
+            "message" => "group $id update successfully"
         ], 202);
     }
 
@@ -137,7 +137,7 @@ class citiesController extends Controller
         $destroyCity -> delete();
 
         return response()->json([
-            "message" => "superhero $id deleted successfully"
+            "message" => "group $id deleted successfully"
         ], 202);
     }            
        

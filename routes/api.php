@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\citiesController;
 use App\Http\Controllers\gadgetController;
+use App\Http\Controllers\groupsController;
 use App\Http\Controllers\VehiculeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,11 +39,15 @@ Route::get("/vehicule", [VehiculeController::class, 'index']);
 Route::put("/vehicule/{id}", [VehiculeController::class, 'updtade']);
 Route::delete("/vehicule/delete/{id}", [VehiculeController::class, 'destroy']);
 Route::post("/vehicule", [VehiculeController::class, 'store']);
-Route::get("/city/{id}", [gadgetController::class, 'show']);
+Route::get("/city/{id}", [citiesController::class, 'show']);
 Route::get("/city", [citiesController::class, 'index']);
 Route::put("/city/{id}", [citiesController::class, 'updtade']);
 Route::delete("/city/delete/{id}", [citiesController::class, 'destroy']);
-Route::post("/city", [citiesController::class, 'store']);
+Route::get("/groups/{id}", [groupsController::class, 'show']);
+Route::get("/groups", [groupsController::class, 'index']);
+Route::put("/groups/{id}", [groupsController::class, 'updtade']);
+Route::delete("/groups/delete/{id}", [groupsController::class, 'destroy']);
+Route::post("/groups", [groupsController::class, 'store']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
