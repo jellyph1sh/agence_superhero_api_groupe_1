@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gadgets_users_Model;
+use App\Models\Power_users_model;
+use App\Models\Vehicul_users_Model;
+use App\Models\vehiculeUserModel;
 use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
 use Illuminate\Support\Facades\DB;
@@ -76,6 +80,20 @@ class SuperHeroController extends Controller
         $newSuperHero->origin_planet = $origin_planet;
         $newSuperHero->id_creator = $id_creator;
         $newSuperHero->save();
+
+        $superHeroId = $newSuperHero->id_hero;
+        $gadgetUser = new Gadgets_users_Model;
+        $vehiculeUser = new Vehicul_users_Model;
+        $powerUser = new Power_users_model;
+        $powerUser->id_hero = $superHeroId;
+        $vehiculeUser->id_hero = $superHeroId;
+        $gadgetUser->id_hero = $superHeroId;
+        $gadgetUser->id_gadget =$request->input('id_gadget');
+        $powerUser->id_power = $request->input('id_power');
+        $vehiculeUser->id_vehicule = $request->input('id_vehicule');
+        $powerUser->save();
+        $vehiculeUser->save();
+        $gadgetUser->save();
     }
 
     /**

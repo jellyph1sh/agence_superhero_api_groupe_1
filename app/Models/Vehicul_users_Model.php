@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Gadgets_users_Model extends Model
+class Vehicul_users_Model extends Model
 {
-    protected $table='gadgets_users';
-    protected $primaryKey = 'id_hero';
     public $timestamps = false;
-
+    protected $table = 'vehicules_users';
     use HasFactory;
 }
