@@ -17,8 +17,8 @@ class CreateProtectedCitiesTable extends Migration
 
         Schema::create('protected_cities', function (Blueprint $table) {
             $table->id('id_protected_cities');
-            $table->bigInteger('id_hero');
-            $table->foreign('id_hero')->references('id_hero')->on('superheroes');
+            $table->bigInteger('id_hero')->unsigned();
+            $table->foreign('id_hero')->references('id_hero')->on('superheroes')->onDelete('cascade');
             $table->bigInteger('id_city');
             $table->foreign('id_city')->references('id_city')->on('cities');
         });

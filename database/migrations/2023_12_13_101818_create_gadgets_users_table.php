@@ -17,8 +17,8 @@ class CreateGadgetsUsersTable extends Migration
 
         Schema::create('gadgets_users', function (Blueprint $table) {
             $table->id('id_gadgets_users');
-            $table->bigInteger('id_hero');
-            $table->foreign('id_hero')->references('id_hero')->on('superheroes');
+            $table->bigInteger('id_hero')->unsigned();
+            $table->foreign('id_hero')->references('id_hero')->on('superheroes')->onDelete('cascade');
             $table->bigInteger('id_gadget');
             $table->foreign('id_gadget')->references('id_gadget')->on('gadgets');
         });

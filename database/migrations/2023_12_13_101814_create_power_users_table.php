@@ -17,8 +17,8 @@ class CreatePowerUsersTable extends Migration
 
         Schema::create('power_users', function (Blueprint $table) {
             $table->id('id_power_users');
-            $table->bigInteger('id_hero');
-            $table->foreign('id_hero')->references('id_hero')->on('superheroes');
+            $table->bigInteger('id_hero')->unsigned();
+            $table->foreign('id_hero')->references('id_hero')->on('superheroes')->onDelete('cascade');
             $table->bigInteger('id_power');
             $table->foreign('id_power')->references('id_power')->on('powers');
         });

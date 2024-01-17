@@ -15,10 +15,16 @@ class CreateGadgetsTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('gadgetS', function (Blueprint $table) {
+        Schema::create('gadgets', function (Blueprint $table) {
             $table->id('id_gadget');
             $table->string('gadget_name');
             $table->string('gadget_description');
+
+            // Ajoute la clé étrangère avec suppression en cascade
+            $table->foreign('id_gadget')
+                ->references('id_hero')
+                ->on('superheroes')
+                ->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();
