@@ -26,7 +26,7 @@ class CreateSuperheroesTable extends Migration
             $table->string('wiki_url');
             $table->string('origin_planet');
             $table->bigInteger('id_creator');
-            $table->foreign('id_creator')->references('id_user')->on('users');
+            $table->foreign('id_creator')->references('id_user')->on('users')->onDelete('cascade');
         });
 
         Schema::enableForeignKeyConstraints();

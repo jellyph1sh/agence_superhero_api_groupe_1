@@ -11,6 +11,102 @@
         }
     ],
     "paths": {
+        "/power": {
+            "get": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "Show all powers",
+                "operationId": "a5d3a4839499d9cf86076420cfdb8661",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/powers": {
+            "post": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "Store new power",
+                "operationId": "8fb5c0b40a2780b4061b5b47a6036168",
+                "parameters": [
+                    {
+                        "name": "power_name",
+                        "in": "query",
+                        "description": "Name of the power to be stored",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "power_description",
+                        "in": "query",
+                        "description": "Description of the power to be stored",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/powers/{id}": {
+            "get": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "Show specific power",
+                "operationId": "bee76060efcb1a9b34ea48a2c5549a7c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the power to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "powers"
+                ],
+                "summary": "Delete specific power",
+                "operationId": "37f385caa8c9c12fe6b19081758e93f2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the power to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
         "/superhero": {
             "get": {
                 "tags": [
@@ -30,8 +126,56 @@
                 "tags": [
                     "superHero"
                 ],
-                "summary": "Creeate super hero",
+                "summary": "Create super hero",
                 "operationId": "e8a89edd13c99bfa96051fac6d1bfe48",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "alias": {
+                                        "type": "string"
+                                    },
+                                    "sex": {
+                                        "type": "string"
+                                    },
+                                    "hair_color": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "wiki_url": {
+                                        "type": "string"
+                                    },
+                                    "origin_planet": {
+                                        "type": "string"
+                                    },
+                                    "id_creator": {
+                                        "type": "integer"
+                                    },
+                                    "id_gadget": {
+                                        "type": "integer"
+                                    },
+                                    "id_power": {
+                                        "type": "integer"
+                                    },
+                                    "id_vehicule": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -44,8 +188,19 @@
                 "tags": [
                     "superHero"
                 ],
-                "summary": "Get a  spcefic specific super hero",
+                "summary": "Get specific super hero with values from gadgets, cities, powers, and groups",
                 "operationId": "21240327206d4f76e233fc5e45f256d7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the super hero to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -56,8 +211,78 @@
                 "tags": [
                     "superHero"
                 ],
-                "summary": "update a spcecif superHeo",
+                "summary": "Update specific super hero",
                 "operationId": "fdb4134c49793bbc0409377c0e46b93d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the super hero to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "alais": {
+                                        "type": "string"
+                                    },
+                                    "sex": {
+                                        "type": "string"
+                                    },
+                                    "hair_color": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    },
+                                    "wiki_url": {
+                                        "type": "string"
+                                    },
+                                    "origin_planet": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "superHero"
+                ],
+                "summary": "Delete specific super hero",
+                "operationId": "f1b6b589ebf381753abf0504b119bcea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the super hero to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -70,22 +295,53 @@
                 "tags": [
                     "users"
                 ],
-                "summary": "get all users",
+                "summary": "Get all users",
                 "operationId": "5a61fd217e7500976e1ae5c5662a4903",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/users/add": {
+            },
             "post": {
                 "tags": [
                     "users"
                 ],
                 "summary": "Register a new user",
-                "operationId": "a93109fee840a2df1203b1d752cac1c5",
+                "operationId": "65d0a1caf21e84c53fa0f2b8271f26c6",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "alias": {
+                                        "type": "string"
+                                    },
+                                    "mail": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "profile_picture": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Successful add"
@@ -98,36 +354,660 @@
                 "tags": [
                     "users"
                 ],
-                "summary": "Get a list spcefic users",
+                "summary": "Get a specific user",
                 "operationId": "ff5f10a2275aa6fe96d9a0ef05a069ce",
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
-                }
-            }
-        },
-        "/users/update/{id}": {
-            "post": {
-                "tags": [
-                    "users"
                 ],
-                "summary": "Update  a user with an id ",
-                "operationId": "8f8b91038bc27b20f347580da7b35026",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/users/delete/{id}": {
+            },
             "put": {
                 "tags": [
                     "users"
                 ],
-                "summary": "delete a  spcefic users",
-                "operationId": "629f4c89ea31726a3b17da0449e5a043",
+                "summary": "Update a user with an id",
+                "operationId": "e28d30345d9c7238299ebdbbbbbb3860",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "lastname": {
+                                        "type": "string"
+                                    },
+                                    "firstname": {
+                                        "type": "string"
+                                    },
+                                    "alias": {
+                                        "type": "string"
+                                    },
+                                    "mail": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "string"
+                                    },
+                                    "profile_picture": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Delete a specific user",
+                "operationId": "f1c4cdc294934242a4db00662a78305a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the user to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicule": {
+            "get": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "Show all vehicles",
+                "operationId": "63ebc0f59fef71916c7aab860ea83173",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "Store new vehicle",
+                "operationId": "e2bf48717eb51d3b1b96ad494225e0f8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "vehicule_name": {
+                                        "type": "string"
+                                    },
+                                    "vehicule_description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/vehicule/{id}": {
+            "get": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "Show specific vehicle",
+                "operationId": "ce6a41bace2b9fda3f9c760f122380e2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the vehicle to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "Update specific vehicle",
+                "operationId": "48828bb74123f53b921630fae0af73dd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the vehicle to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "vehicule_name": {
+                                        "type": "string"
+                                    },
+                                    "vehicule_description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "vehicule"
+                ],
+                "summary": "Delete specific vehicle",
+                "operationId": "bcbc02694b85e9ae565092ff8e9a5220",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the vehicle to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city": {
+            "get": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "show all city",
+                "operationId": "d7996d6232902996c851da41bbbc350a",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "stor new city",
+                "operationId": "407d0575f5b641753cf48f201b5da113",
+                "parameters": [
+                    {
+                        "name": "city_name",
+                        "in": "path",
+                        "description": "city_name of the city to be store",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "path",
+                        "description": "latitude of the city to be store",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "path",
+                        "description": "longitude of the city to be store",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city/{id}": {
+            "get": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "update specific city",
+                "operationId": "dc7ad1a813781d729dccc8a9e58a0adb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the city to show",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "update specific city",
+                "operationId": "cda145e05e8d601f5224674abcc3ea04",
+                "parameters": [
+                    {
+                        "name": "city_name",
+                        "in": "path",
+                        "description": "city_name of the city to be store",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "latitude",
+                        "in": "path",
+                        "description": "latitude of the city to be store",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "longitude",
+                        "in": "path",
+                        "description": "longitude of the city to be store",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/city/delete{id}": {
+            "delete": {
+                "tags": [
+                    "city"
+                ],
+                "summary": "delete specific city",
+                "operationId": "8fd897d04eb2a642c77eef021fdae040",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget}": {
+            "get": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "show all gadget",
+                "operationId": "12c8dc42359e8e57f6124b78430c9abc",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget": {
+            "post": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "Store a new gadget",
+                "operationId": "fd2d2f967874d69b4022e0551cf311e1",
+                "parameters": [
+                    {
+                        "name": "gadget_name",
+                        "in": "query",
+                        "description": "Name of the gadget to be stored",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "gadget_description",
+                        "in": "query",
+                        "description": "Description of the gadget to be stored",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget/{id}": {
+            "get": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "Show specific gadget",
+                "operationId": "4f109d6d440ef05e6ca5d0361dbc6ae2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the gadget to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "Update specific gadget",
+                "operationId": "46595324241d060d15e1e0fab7735207",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the gadget to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "gadget_name",
+                        "in": "query",
+                        "description": "New name of the gadget (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "gadget_description",
+                        "in": "query",
+                        "description": "New description of the gadget (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/gadget/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "gadget"
+                ],
+                "summary": "Delete specific gadget",
+                "operationId": "1ecb67dcaf993fd35219ea80f267b2f9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the gadget to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups": {
+            "get": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "Show all groups",
+                "operationId": "dcd9dbff362ce31202155f643a5fd5c8",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "Store new group",
+                "operationId": "cfddad846fa7ec55ac2f286c0664e5c1",
+                "parameters": [
+                    {
+                        "name": "group_name",
+                        "in": "query",
+                        "description": "Name of the group to be stored",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hq_city",
+                        "in": "query",
+                        "description": "Headquarter city of the group",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id_chief",
+                        "in": "query",
+                        "description": "ID of the chief of the group",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups/{id}": {
+            "get": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "Show specific group",
+                "operationId": "fb50370d6ed90ecefc05bf834096917a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the group to be retrieved",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "Update specific group",
+                "operationId": "12d5bed4fd92228e2f1d783c8cc9e34a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the group to be updated",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "group_name",
+                        "in": "query",
+                        "description": "New name of the group (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "hq_city",
+                        "in": "query",
+                        "description": "New headquarter city of the group (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id_chief",
+                        "in": "query",
+                        "description": "New ID of the chief of the group (optional)",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/groups/delete/{id}": {
+            "delete": {
+                "tags": [
+                    "groups"
+                ],
+                "summary": "Delete specific group",
+                "operationId": "57b7859ad63ed912b47ba47613cc1021",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the group to be deleted",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful operation"
