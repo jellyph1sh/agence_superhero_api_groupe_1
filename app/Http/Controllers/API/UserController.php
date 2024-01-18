@@ -5,18 +5,13 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
+     * ...
 
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
@@ -39,18 +34,29 @@ class UserController extends Controller
     {
         //
     }
+
+    /**
+     * User login.
+     */
     public function login()
     {
-        validator(request()->all(),  [
-            'email' => ['required', 'email'], 
+        validator(request()->all(), [
+            'mail' => ['required', 'email'],
             'password' => ['required']
         ])->validate();
-        $user = User::where('email', request('email'))->first();
-        if(hash::check(request('password'), $user->getAuthPassword())) {
-            return [
-                'token' => $use->createToken(time())->plainTextToken
-            ];
-
+    
+        $user = User::where('mail', request('mail'))->first();
+    
+        if ($user) {
+            if (Hash::check(request('password'), $user->getAuthPassword())) {
+                return [
+                    'token' => $user->createToken(time())->plainTextToken
+                ];
+            }
         }
+    
+        // Authentication failed
+        return response()->json(['error' => 'Invalid credentials'], 401);
     }
+    
 }

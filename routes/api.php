@@ -4,6 +4,7 @@ use App\Http\Controllers\citiesController;
 use App\Http\Controllers\gadgetController;
 use App\Http\Controllers\groupsController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,7 @@ use App\Http\Controllers\SuperHeroController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/login',[UserController::class, 'login']);
 // Routes for users
 Route::resource('users', UsersController::class)->except(['edit', 'create']);
 // Routes for superHero
