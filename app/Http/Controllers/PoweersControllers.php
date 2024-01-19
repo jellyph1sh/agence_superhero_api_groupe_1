@@ -60,14 +60,16 @@ class PoweersControllers extends Controller
         $newPower->power_name = $power_name;
         $newPower->power_description = $power_description;
         $newPower->save();
+        return response()->json(['message' => 'power creation succeful'], 200);
+
     }
     /**
      * @OA\Get(
      *     path="/powers/{id}",
      *     summary="Show specific power",
      *     @OA\Response(
-     *         response=200,
-     *         description="Successful operation",
+     *         response=404,
+     *         description="Power not found",
      *     ),
      *     @OA\Parameter(
      *         name="id",
@@ -87,25 +89,11 @@ class PoweersControllers extends Controller
         if (!empty($powers)) {
             return response()->json($powers);
         } else {
-            return response()->json(["message : " => "power $id not found"]);
+            return response()->json(["message : " => "power $id not found"], 404);
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+ 
     /**
      * @OA\Delete(
      *     path="/powers/{id}",

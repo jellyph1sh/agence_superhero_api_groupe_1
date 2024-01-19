@@ -85,13 +85,7 @@ public function index()
      return response()->json($showVehicule);
  }
 
- /**
-  * Show the form for editing the specified resource.
-  */
-    public function edit(string $id)
-    {
-        //
-    }
+
 
     /**
      * @OA\Put(

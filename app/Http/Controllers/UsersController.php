@@ -16,8 +16,8 @@ class UsersController extends Controller
      *      path="/users",
      *      summary="Get all users",
      *      @OA\Response(
-     *          response=200,
-     *          description="Successful operation",
+     * response=200,
+     *          description="get all users",
      *      ),
      *      tags={"users"},
      * )
@@ -40,7 +40,7 @@ class UsersController extends Controller
      *      summary="Register a new user",
      *      @OA\Response(
      *          response=200,
-     *          description="Successful add",
+     *          description="Successful user add",
      *      ),
      *      tags={"users"},
      *      @OA\RequestBody(
@@ -78,6 +78,8 @@ class UsersController extends Controller
 
 
         $newUser->save();
+        return response()->json(['message' => 'new user create succefully'], 200);
+
     }
 
     /**
@@ -112,14 +114,7 @@ class UsersController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Users $newUsers)
-    {
-        //
-    }
-
+ 
 
  /**
  * @OA\Put(
@@ -128,6 +123,10 @@ class UsersController extends Controller
  *      @OA\Response(
  *          response=200,
  *          description="Successful operation",
+ *      ),
+ *   @OA\Response(
+ *          response=404,
+ *          description="bad request,user not found",
  *      ),
  *      @OA\Parameter(
  *          name="id",
@@ -154,7 +153,17 @@ class UsersController extends Controller
  *      tags={"users"},
  * )
  */
-    
+    /**
+     * @OA\Get(
+     *     path="/",
+     *     summary="Show all route api",
+     *     @OA\Response(
+     *         response=200,
+     * description="get all api route in json file and order by request type",
+     *     ),
+     *     tags={"api"},
+     * )
+     */
     public function update(Request $request, $id)
     {
         $userUpdate = Users::find($id);

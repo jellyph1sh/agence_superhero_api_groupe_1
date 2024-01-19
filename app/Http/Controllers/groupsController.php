@@ -12,7 +12,7 @@ class groupsController extends Controller
      *     path="/groups",
      *     summary="Show all groups",
      *     @OA\Response(
-     *         response=200,
+     *      response=200,
      *         description="Successful operation",
      *     ),
      *     tags={"groups"},
@@ -73,7 +73,8 @@ class groupsController extends Controller
         $newGroup->hq_city = $hq_city;
         $newGroup->id_chief = $id_chief;
         $newGroup->save();
-        
+        return response()->json(['message' => 'groups added succefully'], 200);
+
     }
     /**
      * @OA\Get(

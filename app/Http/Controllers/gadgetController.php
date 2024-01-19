@@ -12,7 +12,7 @@ class gadgetController extends Controller
      *     path="/gadget}",
      *     summary="show all gadget",
      *          @OA\Response(
-     *          response=200,
+     * response=200,
      *          description="Successful operation",
      *      ),
      *  
@@ -64,6 +64,8 @@ class gadgetController extends Controller
         $newGadget->gadget_name = $gadget_name;
         $newGadget->gadget_description = $gadget_description;
         $newGadget->save();
+        return response()->json(['message' => 'gadget create succeful'], 200);
+
     }
     /**
      * @OA\Put(
@@ -73,6 +75,10 @@ class gadgetController extends Controller
      *         response=200,
      *         description="Successful operation",
      *     ),
+     * @OA\Response(
+     * response=400,
+     * description="gadget failled to update",
+     * ),
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -109,17 +115,17 @@ class gadgetController extends Controller
     if (!empty($request->input("gadget_name"))) {
         $gadgetToUpdate->gadget_name = $request->input('gadget_name');
         $gadgetToUpdate->save();
-        return redirect()->back()->with('status', "gadget update succefully");
+            return response()->json(['message' => 'gadget update succefully'], 200);
 
-    }elseif(!empty($request->input("gadget_description"))){
+        }elseif(!empty($request->input("gadget_description"))){
         $gadgetToUpdate->gadget_description = $request->input('gadget_description');
         $gadgetToUpdate->save();
-        return redirect()->back()->with('status', "gadget update succefully");
+            return response()->json(['message' => 'gadget update succefuly'], 200);
 
-    }else{
-        return redirect()->back()->with('status', "fail to update");
+        }else{
+            return response()->json(['message' => 'gadget failled to update'], 400);
 
-    }
+        }
 }
     /**
      * @OA\Get(
@@ -144,7 +150,7 @@ class gadgetController extends Controller
     public function show(string $id)
     {
         $showGadget = gadgetModel::find($id);
-        return response()->json($showGadget);
+        return response()->json(['data' => $showGadget, 'message' => 'Données récupérées avec succès'], 200);
     }
 
     /**

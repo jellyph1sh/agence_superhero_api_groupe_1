@@ -51,13 +51,7 @@ class SuperHeroController extends Controller
         return response()->json($superHero);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(Request $request)
-    {
-  
-    }
+   
 
     /**
      * @OA\Post(
@@ -66,6 +60,10 @@ class SuperHeroController extends Controller
      *     @OA\Response(
      *         response=200,
      *         description="Successful operation",
+     *     ),
+     * @OA\Response(
+     *         response=400,
+     *         description="missing argument",
      *     ),
      *     @OA\RequestBody(
      *         required=true,
@@ -202,6 +200,10 @@ class SuperHeroController extends Controller
      *         response=200,
      *         description="Successful operation",
      *     ),
+     *  @OA\Response(
+     *         response=404,
+     *         description="missing operation",
+     *     ),
      *     @OA\Parameter(
      *         name="id",
      *         in="path",
@@ -233,8 +235,8 @@ public function update(Request $request, string $id)
     $updateSuperHero = SuperHeroModel::find($id);
 
     if (!$updateSuperHero) {
-        return redirect()->back()->with('error', "Super Hero not found");
-    }
+            return response()->json(['message' => 'Superhero not found'], 404);
+        }
 
     $updateSuperHero->firstname = $request->input('name');
     $updateSuperHero->lastname = $request->input('lastname');
@@ -247,8 +249,8 @@ public function update(Request $request, string $id)
 
     $updateSuperHero->save();
 
-    return redirect()->back()->with('status', "Super Hero $id updated successfully");
-}
+        return response()->json(['message' => 'Superhero update and associations saved successfully'], 200);
+    }
 
     /**
      * @OA\Delete(

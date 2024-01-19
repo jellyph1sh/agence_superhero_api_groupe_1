@@ -28,13 +28,6 @@ class citiesController extends Controller
         return response()->json($allCitiies);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * @OA\Post(
@@ -87,6 +80,8 @@ class citiesController extends Controller
         $newCity->latitude = $latitude;
         $newCity ->longitude = $longitude;
         $newCity->save();
+        return response()->json(['message' => 'city create succeful'], 200);
+
     }
     /**
   * @OA\Get(
