@@ -43,7 +43,7 @@ class SuperHeroController extends Controller
             ->leftjoin('cities', 'protected_cities.id_city', '=', 'cities.id_city')
             ->leftjoin('protected_cities_groups', 'cities.id_city', '=', 'protected_cities_groups.id_city')
             ->leftjoin('groups', 'protected_cities_groups.id_group', '=', 'groups.id_group')
-            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*', 'vehicules.*', 'groups.*', 'cities.*')
+            ->select('superheroes.*', 'powers.*', 'gadgetS.*', 'vehicules.*', 'groups.*', 'cities.*')
             ->groupBy('superheroes.id_hero')
 
             ->get();

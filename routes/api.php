@@ -22,22 +22,22 @@ use App\Http\Controllers\SuperHeroController;
 |
 */
 Route::post('/login',[UserController::class, 'login']);
-// Routes for users
-Route::resource('users', UsersController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
-// Routes for superHero
-Route::resource('superHero', SuperHeroController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
-// Routes for gadget
-Route::resource('gadget', GadgetController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
-// Routes for vehicule
-Route::resource('vehicule', VehiculeController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
-// Routes for city
-Route::resource('city', CitiesController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
-// Routes for groups
-Route::resource('groups', GroupsController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
+Route::resource('users', UsersController::class)->except(['edit', 'create']);
 
-// Additional route for checking user authentication
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::resource('superHero', SuperHeroController::class)->except(['edit', 'create']);
+
+Route::resource('gadget', GadgetController::class)->except(['edit', 'create']);
+
+Route::resource('vehicule', VehiculeController::class)->except(['edit', 'create']);
+
+Route::resource('city', CitiesController::class)->except(['edit', 'create']);
+
+Route::resource('groups', GroupsController::class)->except(['edit', 'create']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+
+    
 });
-
-
