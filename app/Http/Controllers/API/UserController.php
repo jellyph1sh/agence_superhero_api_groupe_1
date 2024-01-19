@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\API;
 
+use Laravel\Sanctum\HasApiTokens;
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -22,7 +24,7 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Users $user)
     {
         //
     }
@@ -30,7 +32,7 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy(Users $user)
     {
         //
     }
@@ -45,18 +47,13 @@ class UserController extends Controller
             'password' => ['required']
         ])->validate();
     
-        $user = User::where('mail', request('mail'))->first();
-    
-        if ($user) {
-            if (Hash::check(request('password'), $user->getAuthPassword())) {
-                return [
-                    'token' => $user->createToken(time())->plainTextToken
-                ];
-            }
+        $user = Users::where('mail', request('mail'))->first();
+        if ($user && Hash::check(request('password'), $user->password)) {
+            return [
+                'token' => $user->createToken(time())->plainTextToken
+            ];
         }
-    
-        // Authentication failed
-        return response()->json(['error' => 'Invalid credentials'], 401);
+        return response()->json(['error' => false], 401);
     }
     
 }
