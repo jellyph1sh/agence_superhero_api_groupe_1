@@ -4,9 +4,10 @@ use App\Http\Controllers\citiesController;
 use App\Http\Controllers\gadgetController;
 use App\Http\Controllers\groupsController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\testController;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SuperHeroController;
@@ -20,18 +21,19 @@ use App\Http\Controllers\SuperHeroController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+Route::post('/login',[UserController::class, 'login']);
 // Routes for users
-Route::resource('users', UsersController::class)->except(['edit', 'create']);
+Route::resource('users', UsersController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for superHero
-Route::resource('superHero', SuperHeroController::class)->except(['edit', 'create']);
+Route::resource('superHero', SuperHeroController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for gadget
-Route::resource('gadget', GadgetController::class)->except(['edit', 'create']);
+Route::resource('gadget', GadgetController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for vehicule
-Route::resource('vehicule', VehiculeController::class)->except(['edit', 'create']);
+Route::resource('vehicule', VehiculeController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for city
-Route::resource('city', CitiesController::class)->except(['edit', 'create']);
+Route::resource('city', CitiesController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for groups
-Route::resource('groups', GroupsController::class)->except(['edit', 'create']);
+Route::resource('groups', GroupsController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 
 // Additional route for checking user authentication
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
