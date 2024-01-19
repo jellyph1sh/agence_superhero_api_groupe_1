@@ -49,9 +49,9 @@ class UserController extends Controller
     
         $user = Users::where('mail', request('mail'))->first();
         if ($user && Hash::check(request('password'), $user->password)) {
-            return [
-                'token' => $user->createToken(time())->plainTextToken
-            ];
+            $token = $user->createToken(time())->plainTextToken;
+
+            return response()->json(['status' => 'success', 'token' => $token], 200);
         }
         return response()->json(['error' => false], 401);
     }
