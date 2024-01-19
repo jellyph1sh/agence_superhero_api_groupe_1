@@ -65,14 +65,15 @@ class groupsController extends Controller
      */
     public function store(Request $request)
     {
-        $group_name = $request->input("group_name");
+        $group_name = $request->input("group_names");
         $hq_city = $request->input("hq_city");
         $id_chief = $request->input("id_chief");
         $newGroup = new groupsModel;
-        $newGroup->group_name = $group_name;
+        $newGroup->group_names = $group_name;
         $newGroup->hq_city = $hq_city;
         $newGroup->id_chief = $id_chief;
         $newGroup->save();
+        
     }
     /**
      * @OA\Get(

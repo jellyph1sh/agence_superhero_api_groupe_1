@@ -32,8 +32,23 @@ class SuperHeroController extends Controller
 
     public function index()
     {
-        $allSuperHero = SuperHeroModel::all();
-        return response()->json($allSuperHero);
+        $superHero = DB::table('superheroes')
+            ->leftjoin('power_users', 'superheroes.id_hero', '=', 'power_users.id_hero')
+            ->leftjoin('powers', 'power_users.id_power', '=', 'powers.id_power')
+            ->leftjoin('gadgets_users', 'superheroes.id_hero', '=', 'gadgets_users.id_hero')
+            ->leftjoin('gadgetS', 'gadgets_users.id_gadget', '=', 'gadgetS.id_gadget')
+            ->leftjoin('vehicules_users', 'superheroes.id_hero', '=', 'vehicules_users.id_hero')
+            ->leftjoin('vehicules', 'vehicules_users.id_vehicule', '=', 'vehicules.id_vehicule')
+            ->leftjoin('protected_cities', 'superheroes.id_hero', '=', 'protected_cities.id_hero')
+            ->leftjoin('cities', 'protected_cities.id_city', '=', 'cities.id_city')
+            ->leftjoin('protected_cities_groups', 'cities.id_city', '=', 'protected_cities_groups.id_city')
+            ->leftjoin('groups', 'protected_cities_groups.id_group', '=', 'groups.id_group')
+            ->select('superheroes.*', 'power_users.*', 'powers.*', 'gadgetS.*', 'vehicules.*', 'groups.*', 'cities.*')
+            ->groupBy('superheroes.id_hero')
+
+            ->get();
+
+        return response()->json($superHero);
     }
 
     /**
