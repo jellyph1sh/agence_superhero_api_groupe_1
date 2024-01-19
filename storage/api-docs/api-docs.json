@@ -11,6 +11,75 @@
         }
     ],
     "paths": {
+        "/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "User login",
+                "description": "Login with email and password",
+                "operationId": "userLogin",
+                "requestBody": {
+                    "description": "User credentials",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "mail": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "user_password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful login",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "success"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "your_access_token"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/power": {
             "get": {
                 "tags": [
@@ -78,8 +147,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "Successful operation"
+                    "404": {
+                        "description": "Power not found"
                     }
                 }
             },
@@ -169,6 +238,9 @@
                                     },
                                     "id_vehicule": {
                                         "type": "integer"
+                                    },
+                                    "id_city": {
+                                        "type": "integer"
                                     }
                                 },
                                 "type": "object"
@@ -179,6 +251,9 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "missing argument"
                     }
                 }
             }
@@ -263,6 +338,9 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation"
+                    },
+                    "404": {
+                        "description": "missing operation"
                     }
                 }
             },
@@ -299,7 +377,7 @@
                 "operationId": "5a61fd217e7500976e1ae5c5662a4903",
                 "responses": {
                     "200": {
-                        "description": "Successful operation"
+                        "description": "get all users"
                     }
                 }
             },
@@ -344,7 +422,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful add"
+                        "description": "Successful user add"
                     }
                 }
             }
@@ -373,62 +451,6 @@
                     }
                 }
             },
-            "put": {
-                "tags": [
-                    "users"
-                ],
-                "summary": "Update a user with an id",
-                "operationId": "e28d30345d9c7238299ebdbbbbbb3860",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "ID of the user to be updated",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "lastname": {
-                                        "type": "string"
-                                    },
-                                    "firstname": {
-                                        "type": "string"
-                                    },
-                                    "alias": {
-                                        "type": "string"
-                                    },
-                                    "mail": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    },
-                                    "role": {
-                                        "type": "string"
-                                    },
-                                    "profile_picture": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Successful operation"
-                    }
-                }
-            },
             "delete": {
                 "tags": [
                     "users"
@@ -449,6 +471,20 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation"
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "api"
+                ],
+                "summary": "Show all route api",
+                "operationId": "f8d442d938fac40d1c7136b6f63c31a6",
+                "responses": {
+                    "200": {
+                        "description": "get all api route in json file and order by request type"
                     }
                 }
             }
@@ -705,15 +741,13 @@
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/city/delete{id}": {
+            },
             "delete": {
                 "tags": [
                     "city"
                 ],
                 "summary": "delete specific city",
-                "operationId": "8fd897d04eb2a642c77eef021fdae040",
+                "operationId": "1f58452aaff887ff8f9b8a6b1538941f",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -831,17 +865,18 @@
                 "responses": {
                     "200": {
                         "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "gadget failled to update"
                     }
                 }
-            }
-        },
-        "/gadget/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "gadget"
                 ],
                 "summary": "Delete specific gadget",
-                "operationId": "1ecb67dcaf993fd35219ea80f267b2f9",
+                "operationId": "357f18901550cd7919c54ed1c753957f",
                 "parameters": [
                     {
                         "name": "id",
@@ -988,15 +1023,13 @@
                         "description": "Successful operation"
                     }
                 }
-            }
-        },
-        "/groups/delete/{id}": {
+            },
             "delete": {
                 "tags": [
                     "groups"
                 ],
                 "summary": "Delete specific group",
-                "operationId": "57b7859ad63ed912b47ba47613cc1021",
+                "operationId": "c6cb6ee0ee5f829657a0f9c4af6a633f",
                 "parameters": [
                     {
                         "name": "id",

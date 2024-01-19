@@ -7,7 +7,6 @@ use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\testController;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SuperHeroController;
@@ -21,6 +20,24 @@ use App\Http\Controllers\SuperHeroController;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+//Get all route in order
+Route::get('/', function () {
+    $routes = Route::getRoutes();
+
+    $groupedRoutes = [];
+
+    foreach ($routes as $route) {
+        $methods = $route->methods();
+        $uri = $route->uri();
+        
+        foreach ($methods as $method) {
+            $groupedRoutes[$method][] = $method . ': ' . $uri;
+        }
+    }
+
+    return response()->json(['routes' => $groupedRoutes]);
+});
+
 Route::post('/login',[UserController::class, 'login']);
 // Routes for users
 Route::resource('users', UsersController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
@@ -35,9 +52,8 @@ Route::resource('city', CitiesController::class)->except(['edit', 'create'])->mi
 // Routes for groups
 Route::resource('groups', GroupsController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 
-// Additional route for checking user authentication
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 });
-
-
