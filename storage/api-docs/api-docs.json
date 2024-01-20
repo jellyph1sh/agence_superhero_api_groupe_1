@@ -176,6 +176,61 @@
                 }
             }
         },
+        "/protected-cities-groups": {
+            "post": {
+                "tags": [
+                    "Protected Cities by Group"
+                ],
+                "summary": "Add a protected city by group",
+                "description": "Adds a new entry for a city protected by a group.",
+                "operationId": "storeProtectedCityByGroup",
+                "requestBody": {
+                    "description": "Request body for adding protected city by group",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id_group": {
+                                        "description": "Group ID",
+                                        "type": "integer"
+                                    },
+                                    "id_city": {
+                                        "description": "City ID",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "Successfully added protected city by group",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
         "/superhero": {
             "get": {
                 "tags": [
