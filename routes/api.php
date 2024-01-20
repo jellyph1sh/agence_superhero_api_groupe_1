@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SuperHeroController;
+use App\Http\Controllers\SuperHroEditController;
+use App\http\Controllers\ProtectedCityGroupe;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,10 +45,14 @@ Route::post('/login',[UserController::class, 'login']);
 Route::resource('users', UsersController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for superHero
 Route::resource('superHero', SuperHeroController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
+// Routes for editing 
+Route::post('superHero/edit', [SuperHeroController::class, 'EditSuperHero'])->middleware('auth:sanctum');
 // Routes for gadget
 Route::resource('gadget', GadgetController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for vehicule
 Route::resource('vehicule', VehiculeController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
+// Routes for protected city groupe
+Route::post('protectedCityGroup', [ProtectedCityGroupe::class, 'store'])->middleware('auth:sanctum');
 // Routes for city
 Route::resource('city', CitiesController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for groups
