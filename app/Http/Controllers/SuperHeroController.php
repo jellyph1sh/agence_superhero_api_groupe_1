@@ -158,7 +158,8 @@ class SuperHeroController extends Controller
         $description = $request->input('description');
         $wiki_url = $request->input('wiki_url');
         $origin_planet = $request->input('origin_planet');
-        $id_creator = $request->input('id_creator');
+        $user = Auth::user();
+        $id_creator = $user->id_user;
         $newSuperHero = new SuperHeroModel;
         $newSuperHero->firstname = $firstname;
         $newSuperHero->lastname = $lastname;
