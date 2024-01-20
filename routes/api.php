@@ -4,6 +4,7 @@ use App\Http\Controllers\citiesController;
 use App\Http\Controllers\gadgetController;
 use App\Http\Controllers\groupsController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\PowersController;
 use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -51,6 +52,8 @@ Route::resource('vehicule', VehiculeController::class)->except(['edit', 'create'
 Route::resource('city', CitiesController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for groups
 Route::resource('groups', GroupsController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
+// Routes for powers
+Route::resource('powers', PowersController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {

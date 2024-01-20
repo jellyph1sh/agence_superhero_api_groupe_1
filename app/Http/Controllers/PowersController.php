@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PowersModel;
 use Illuminate\Http\Request;
 
-class PoweersControllers extends Controller
+class PowersController extends Controller
 {
     /**
      * @OA\Get(
