@@ -4,7 +4,7 @@ use App\Http\Controllers\citiesController;
 use App\Http\Controllers\gadgetController;
 use App\Http\Controllers\groupsController;
 use App\Http\Controllers\VehiculeController;
-use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
