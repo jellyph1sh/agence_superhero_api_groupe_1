@@ -52,37 +52,25 @@ class SuperHeroController extends Controller
         return response()->json($superHero);
     }
 
-    public function EditSuperHero() {
-        validator(request()->all(), [
-            'id_hero' => ['required'],
-            'lastname' => ['required'],
-            'firstname' => ['required'],
-            'alias' => ['required'],
-            'sex' => ['required'],
-            'hair_color' => ['required'],
-            'description' => ['required'],
-            'wiki_url' => ['required'],
-            'origin_planet' => ['required']
-        ])->validate();
+    public function EditSuperHero(Request $request) {
         $user = Auth::user();
-        return response()->json(['test' => $user->id_user]);
-        $hero = SuperHeroModel::where('id_hero', request('id_hero'))->where('user_id', $user->id)->first();
+        $hero = SuperHeroModel::where('id_hero', request('id_hero'))->where('id_creator', $user->id_user)->first();
        
         if ($hero){
-            $hero->lastname = $request['lastname'];
-            $hero->firstname = $request['firstname'];
-            $hero->alias = $request['alias'];
-            $hero->sex = $request['sex'];
-            $hero->hair_color = $request['hair_color'];
-            $hero->description = $request['description'];
-            $hero->wiki_url = $request['wiki_url'];
-            $hero->origin_planet = $request['origin_planet'];
+            $hero->lastname = $request->input('lastname');
+            $hero->firstname = $request->input('firstname');
+            $hero->alias = $request->input('alias');
+            $hero->sex = $request->input('sex');
+            $hero->hair_color = $request->input('hair_color');
+            $hero->description = $request->input('description');
+            $hero->wiki_url = $request->input('wiki_url');
+            $hero->origin_planet = $request->input('origin_planet');
 
             $hero->save();
             return response()->json(['message' => 'done'], 200);
         } else {
             
-            return response()->json(['message' => 'user unauthorized'], 403);
+            return response()->json(['message' => 'acced granded'], 403);
         }
     }
    
