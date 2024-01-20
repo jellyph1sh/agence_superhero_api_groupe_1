@@ -1,7 +1,10 @@
 # AGENCE SUPERHERO API
+The goal of the project was to create an api rest for a superhero agency. A user could therefore have the possibility to edit his super hero and see the other super hero
+A super hero had to have different parameters and had the possibility to have gagdets, vehicles, protect a city and apartenir a group.
 
 ## DESCRIPTION
 *API for our agence superhero website.*
+The project was made in php version 8.2. This api is a REST api developed with LARAVEL. This api can handle the post/get/put/delelete method.
 
 ## MEMBERS
 - ARr0x (LACOMBE Arthur)
@@ -15,8 +18,12 @@ Get the lastest version of laravel and php
 
 1. copy the github repository : https://github.com/jellyph1sh/agence_superhero_front_groupe_1
 2. follow the readme
-3. execute ``composer install ``
-4. execute ``php artisan serv
+3. execute ``php artisan migrate``
+4. execute ``php artisan DB:seed``
+4. execute ``composer install ``
+5. execute ``php artisan serv
+
+
 
 
 ## API

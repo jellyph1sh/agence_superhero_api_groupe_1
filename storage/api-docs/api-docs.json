@@ -86,7 +86,7 @@
                     "powers"
                 ],
                 "summary": "Show all powers",
-                "operationId": "a5d3a4839499d9cf86076420cfdb8661",
+                "operationId": "be628480efb50056c99f925682d2bdb9",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -100,7 +100,7 @@
                     "powers"
                 ],
                 "summary": "Store new power",
-                "operationId": "8fb5c0b40a2780b4061b5b47a6036168",
+                "operationId": "2fda1e94ae6b8f39abcd7111a6fe74f4",
                 "parameters": [
                     {
                         "name": "power_name",
@@ -134,7 +134,7 @@
                     "powers"
                 ],
                 "summary": "Show specific power",
-                "operationId": "bee76060efcb1a9b34ea48a2c5549a7c",
+                "operationId": "b51be275320400f96cd4d678a2b52259",
                 "parameters": [
                     {
                         "name": "id",
@@ -157,7 +157,7 @@
                     "powers"
                 ],
                 "summary": "Delete specific power",
-                "operationId": "37f385caa8c9c12fe6b19081758e93f2",
+                "operationId": "988a17bcccf4cf80c3c4c23a1d9876a0",
                 "parameters": [
                     {
                         "name": "id",
