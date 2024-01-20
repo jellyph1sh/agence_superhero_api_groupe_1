@@ -172,28 +172,27 @@ class SuperHeroController extends Controller
         $newSuperHero->id_creator = $id_creator;
         $newSuperHero->save();
 
-
         $superHeroId = $newSuperHero->id_hero;
-        $protected_cities = new Protected_cities_Model;
-        $gadgetUser = new Gadgets_users_Model;
+        //$protected_cities = new Protected_cities_Model;
+        //$gadgetUser = new Gadgets_users_Model;
         $vehiculeUser = new Vehicul_users_Model;
-        $powerUser = new Power_users_model;
+        //$powerUser = new Power_users_model;*/
         if (!empty($superHeroId)) {
-            $protected_cities->id_hero = $superHeroId;
-            $gadgetUser->id_hero = $superHeroId;
-            $powerUser->id_hero = $superHeroId;
+            //$protected_cities->id_hero = $superHeroId;
+            //$gadgetUser->id_hero = $superHeroId;
+            //$powerUser->id_hero = $superHeroId;
             $vehiculeUser->id_hero = $superHeroId;
 
             if ($request->filled(['city', 'id_gadget', 'id_power', 'id_vehicule'])) {
-                $protected_cities->id_city = $request->input('city');
-                $gadgetUser->id_gadget = $request->input('id_gadget');
-                $powerUser->id_power = $request->input('id_power');
+                //$protected_cities->id_city = $request->input('city');
+                //$gadgetUser->id_gadget = $request->input('id_gadget');
+                //$powerUser->id_power = $request->input('id_power');
                 $vehiculeUser->id_vehicule = $request->input('id_vehicule');
 
-                $powerUser->save();
+                //$powerUser->save();
                 $vehiculeUser->save();
-                $gadgetUser->save();
-                $protected_cities->save();
+                //$gadgetUser->save();*/
+                //$protected_cities->save();
                 return response()->json(['message' => 'Superhero details and associations saved successfully'], 200);
 
             } else {
