@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\SuperHeroController;
+use App\Http\Controllers\SuperHroEditController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,6 +44,7 @@ Route::post('/login',[UserController::class, 'login']);
 Route::resource('users', UsersController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for superHero
 Route::resource('superHero', SuperHeroController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
+Route::post('superHero/edit', [SuperHeroController::class, 'EditSuperHero'])->middleware('auth:sanctum');
 // Routes for gadget
 Route::resource('gadget', GadgetController::class)->except(['edit', 'create'])->middleware('auth:sanctum');
 // Routes for vehicule
