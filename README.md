@@ -22,6 +22,8 @@ Get the lastest version of laravel and php
 4. execute ``php artisan DB:seed``
 4. execute ``composer install ``
 5. execute ``php artisan serv
+6. execute ``php artisan l5-swagger:generate ``
+
 
 
 
