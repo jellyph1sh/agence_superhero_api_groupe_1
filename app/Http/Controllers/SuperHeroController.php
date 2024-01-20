@@ -51,6 +51,44 @@ class SuperHeroController extends Controller
 
         return response()->json($superHero);
     }
+    /**
+        * @OA\Post(
+        *      path="/superHero/edit",
+        *      operationId="editSuperHero",
+        *      tags={"Super Hero"},
+        *      summary="Edit the details of a Super Hero",
+        *      description="Edit the details of a Super Hero if the user has the necessary permissions.",
+        *      @OA\RequestBody(
+        *          required=true,
+        *          @OA\JsonContent(
+        *              required={"id_hero", "lastname", "firstname", "alias", "sex", "hair_color", "description", "wiki_url", "origin_planet"},
+        *              @OA\Property(property="id_hero", type="integer", example=1),
+        *              @OA\Property(property="lastname", type="string", example="Doe"),
+        *              @OA\Property(property="firstname", type="string", example="John"),
+        *              @OA\Property(property="alias", type="string", example="Superman"),
+        *              @OA\Property(property="sex", type="string", example="Male"),
+        *              @OA\Property(property="hair_color", type="string", example="Black"),
+        *              @OA\Property(property="description", type="string", example="The Man of Steel"),
+        *              @OA\Property(property="wiki_url", type="string", example="https://en.wikipedia.org/wiki/Superman"),
+        *              @OA\Property(property="origin_planet", type="string", example="Krypton")
+        *          )
+        *      ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation",
+        *          @OA\JsonContent(
+        *              @OA\Property(property="message", type="string", example="done")
+        *          )
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="User unauthorized",
+        *          @OA\JsonContent(
+        *              @OA\Property(property="message", type="string", example="user unauthorized")
+        *          )
+        *      ),
+        * )
+        */
 
     public function EditSuperHero(Request $request) {
         $user = Auth::user();
