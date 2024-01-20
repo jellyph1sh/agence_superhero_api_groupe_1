@@ -2,16 +2,14 @@
 
 namespace App\Models;
 
-use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Users extends Model
+class Protected_cities_groups_Model extends Model
 {
-    use HasApiTokens;
+protected $table = "protected_cities_groups";
     public $timestamps = false;
-    protected $primaryKey = 'id_user';
+    protected $primaryKey = 'id_protected_cities_groups';
 
-    protected $table = "users";
     use HasFactory;
 }

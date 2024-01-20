@@ -9,6 +9,21 @@
 - SulienP (PAYRAUDEAU Sulien)
 - JellyPh1sh (SORGIATI Sacha)
 
+
+## How to start
+Get the lastest version of laravel and php
+
+1. copy the github repository : https://github.com/jellyph1sh/agence_superhero_front_groupe_1
+2. follow the readme
+3. execute ``composer install ``
+4. execute ``php artisan serv
+
+
+## API
+THe documentation of api ia aviable on ``http://localhost:8000/documentation``
+All route are avianle on ``http://localhost:8000/api/``
+For execute every request you need to be connected and get some tokens.
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
