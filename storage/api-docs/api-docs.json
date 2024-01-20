@@ -190,6 +190,109 @@
                 }
             }
         },
+        "/superHero/edit": {
+            "post": {
+                "tags": [
+                    "Super Hero"
+                ],
+                "summary": "Edit the details of a Super Hero",
+                "description": "Edit the details of a Super Hero if the user has the necessary permissions.",
+                "operationId": "editSuperHero",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id_hero",
+                                    "lastname",
+                                    "firstname",
+                                    "alias",
+                                    "sex",
+                                    "hair_color",
+                                    "description",
+                                    "wiki_url",
+                                    "origin_planet"
+                                ],
+                                "properties": {
+                                    "id_hero": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "lastname": {
+                                        "type": "string",
+                                        "example": "Doe"
+                                    },
+                                    "firstname": {
+                                        "type": "string",
+                                        "example": "John"
+                                    },
+                                    "alias": {
+                                        "type": "string",
+                                        "example": "Superman"
+                                    },
+                                    "sex": {
+                                        "type": "string",
+                                        "example": "Male"
+                                    },
+                                    "hair_color": {
+                                        "type": "string",
+                                        "example": "Black"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "The Man of Steel"
+                                    },
+                                    "wiki_url": {
+                                        "type": "string",
+                                        "example": "https://en.wikipedia.org/wiki/Superman"
+                                    },
+                                    "origin_planet": {
+                                        "type": "string",
+                                        "example": "Krypton"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "done"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "User unauthorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "user unauthorized"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/superHeros": {
             "post": {
                 "tags": [

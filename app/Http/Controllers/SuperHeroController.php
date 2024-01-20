@@ -9,8 +9,9 @@ use App\Models\Vehicul_users_Model;
 use App\Models\vehiculeUserModel;
 use Illuminate\Http\Request;
 use App\Models\SuperHeroModel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Log;
 
 class SuperHeroController extends Controller
 {
@@ -50,7 +51,66 @@ class SuperHeroController extends Controller
 
         return response()->json($superHero);
     }
+    /**
+        * @OA\Post(
+        *      path="/superHero/edit",
+        *      operationId="editSuperHero",
+        *      tags={"Super Hero"},
+        *      summary="Edit the details of a Super Hero",
+        *      description="Edit the details of a Super Hero if the user has the necessary permissions.",
+        *      @OA\RequestBody(
+        *          required=true,
+        *          @OA\JsonContent(
+        *              required={"id_hero", "lastname", "firstname", "alias", "sex", "hair_color", "description", "wiki_url", "origin_planet"},
+        *              @OA\Property(property="id_hero", type="integer", example=1),
+        *              @OA\Property(property="lastname", type="string", example="Doe"),
+        *              @OA\Property(property="firstname", type="string", example="John"),
+        *              @OA\Property(property="alias", type="string", example="Superman"),
+        *              @OA\Property(property="sex", type="string", example="Male"),
+        *              @OA\Property(property="hair_color", type="string", example="Black"),
+        *              @OA\Property(property="description", type="string", example="The Man of Steel"),
+        *              @OA\Property(property="wiki_url", type="string", example="https://en.wikipedia.org/wiki/Superman"),
+        *              @OA\Property(property="origin_planet", type="string", example="Krypton")
+        *          )
+        *      ),
+        *      @OA\Response(
+        *          response=200,
+        *          description="Successful operation",
+        *          @OA\JsonContent(
+        *              @OA\Property(property="message", type="string", example="done")
+        *          )
+        *      ),
+        *      @OA\Response(
+        *          response=403,
+        *          description="User unauthorized",
+        *          @OA\JsonContent(
+        *              @OA\Property(property="message", type="string", example="user unauthorized")
+        *          )
+        *      ),
+        * )
+        */
 
+    public function EditSuperHero(Request $request) {
+        $user = Auth::user();
+        $hero = SuperHeroModel::where('id_hero', request('id_hero'))->where('id_creator', $user->id_user)->first();
+       
+        if ($hero){
+            $hero->lastname = $request->input('lastname');
+            $hero->firstname = $request->input('firstname');
+            $hero->alias = $request->input('alias');
+            $hero->sex = $request->input('sex');
+            $hero->hair_color = $request->input('hair_color');
+            $hero->description = $request->input('description');
+            $hero->wiki_url = $request->input('wiki_url');
+            $hero->origin_planet = $request->input('origin_planet');
+
+            $hero->save();
+            return response()->json(['message' => 'done'], 200);
+        } else {
+            
+            return response()->json(['message' => 'acced granded'], 403);
+        }
+    }
    
 
     /**
@@ -232,24 +292,55 @@ class SuperHeroController extends Controller
      */
 public function update(Request $request, string $id)
 {
-    $updateSuperHero = SuperHeroModel::find($id);
 
-    if (!$updateSuperHero) {
-            return response()->json(['message' => 'Superhero not found'], 404);
-        }
+    validator(request()->all(), [
+        'id_hero' => ['required'],
+        'lastname' => ['required'],
+        'firstname' => ['required'],
+        'alias' => ['required'],
+        'sex' => ['required'],
+        'hair_color' => ['required'],
+        'description' => ['required'],
+        'wiki_url' => ['required'],
+        'origin_planet' => ['required']
+    ])->validate();
+    $user = Auth::user();
+    $hero = SuperHeroModel::where('id_hero', request('id_hero'))->where('user_id', $user->id)->first();
+   
+    if ($hero){
+        $hero->lastname = $request['lastname'];
+        $hero->firstname = $request['firstname'];
+        $hero->alias = $request['alias'];
+        $hero->sex = $request['sex'];
+        $hero->hair_color = $request['hair_color'];
+        $hero->description = $request['description'];
+        $hero->wiki_url = $request['wiki_url'];
+        $hero->origin_planet = $request['origin_planet'];
 
-    $updateSuperHero->firstname = $request->input('name');
-    $updateSuperHero->lastname = $request->input('lastname');
-    $updateSuperHero->alais = $request->input('alais');
-    $updateSuperHero->sexo = $request->input('sex');
-    $updateSuperHero->hair_color = $request->input('hair_color');
-    $updateSuperHero->description = $request->input('description');
-    $updateSuperHero->wiki_url = $request->input('wiki_url');
-    $updateSuperHero->origin_planet = $request->input('origin_planet');
+        $hero->save();
+        return response()->json(['message' => 'done'], 200);
+    } else {
+        
+        return response()->json(['message' => 'user unauthorized'], 403);
+    }
+    // $updateSuperHero = SuperHeroModel::find($id);
 
-    $updateSuperHero->save();
+    // if (!$updateSuperHero) {
+    //         return response()->json(['message' => 'Superhero not found'], 404);
+    //     }
 
-        return response()->json(['message' => 'Superhero update and associations saved successfully'], 200);
+    // $updateSuperHero->firstname = $request->input('name');
+    // $updateSuperHero->lastname = $request->input('lastname');
+    // $updateSuperHero->alais = $request->input('alais');
+    // $updateSuperHero->sexo = $request->input('sex');
+    // $updateSuperHero->hair_color = $request->input('hair_color');
+    // $updateSuperHero->description = $request->input('description');
+    // $updateSuperHero->wiki_url = $request->input('wiki_url');
+    // $updateSuperHero->origin_planet = $request->input('origin_planet');
+
+    // $updateSuperHero->save();
+
+    //     return response()->json(['message' => 'Superhero update and associations saved successfully'], 200);
     }
 
     /**
